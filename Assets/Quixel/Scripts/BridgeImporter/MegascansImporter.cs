@@ -228,7 +228,7 @@ namespace Quixel
                         mat.SetTexture("_MainTex", tex);
                         mat.SetTexture("_BaseColorMap", tex);
 
-                        if (shaderType >= 1) // UNITY 6 fix
+                        if (shaderType >= 1)
                         {
                             mat.SetTexture("_BaseMap", tex);
                             mat.SetColor("_BaseColor", Color.white);

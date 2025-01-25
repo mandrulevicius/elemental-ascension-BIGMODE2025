@@ -7,7 +7,7 @@ using System;
 
 namespace Quixel
 {
-    public class MegascansTextureProcessor // UNITY 6 fix
+    public class MegascansTextureProcessor
     {
         string sourcePath;
         string destPath;

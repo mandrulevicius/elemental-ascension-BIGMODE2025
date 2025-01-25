@@ -36,7 +36,7 @@ namespace Quixel
                     }
                     if (shaderType > 0)
                     {
-#if UNITY_2019_3 || UNITY_2019_4 || UNITY_2020 || UNITY_2021 || UNITY_2022 || UNITY_2023 || UNITY_6000  // UNITY 6 fix
+#if UNITY_2019_3 || UNITY_2019_4 || UNITY_2020 || UNITY_2021 || UNITY_2022 || UNITY_2023 || UNITY_6000
                         mat.shader = Shader.Find("Universal Render Pipeline/Lit");
 #else
                         if (MegascansUtilities.isLegacy())
@@ -44,9 +44,9 @@ namespace Quixel
                         else
                             mat.shader = Shader.Find("Lightweight Render Pipeline/Lit");
 #endif
-                        return mat; // UNITY 6 fix: added early return if URP is found
+                        return mat; // early return if URP is found
                     }
-                    if (shaderType > 1) //UNITY 6 warning: will not reach here due to early return
+                    if (shaderType > 1) // warning: will not reach here due to early return
                     {
                         if (isAlembic)
                         {
