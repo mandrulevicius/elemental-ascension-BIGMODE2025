@@ -73,3 +73,6 @@ crashlytics-build.properties
 
 # Local Config
 /[Aa]ssets/[Rr]esources/[Ll]ocalConfig/
+
+# JetBrains Rider
+.idea/
