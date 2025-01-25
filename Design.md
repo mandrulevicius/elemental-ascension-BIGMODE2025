@@ -8,7 +8,7 @@ Links: [[Atlanta GroupGameDev - project Cyberpowers]]
 
 Shaman - nature, elements.
 Power.
-Mountain - hidden volcano.
+Mountain - hidden volcano. Maybe built over with metal imitation of a pyramid.
 
 Elemental power - Earth, Water, Air, Fire, Lightning.
 Power comes from journey, it is means to reach a destination, not the destination itself.
@@ -25,6 +25,8 @@ Synergies between elements create effect bigger than the sum of their parts.
 - Combat (Fire)
 
 Start at a bottom of a mountain, go through each area towards the peak.
+
+2-4 minutes of gameplay per area!
 
 ## Elements
 ### Earth - farming
@@ -155,6 +157,9 @@ Will need to warm up air to use other abilities effectively.
 ## Design considerations
 Want to let player use all the skills combined for longer, in 4 more areas like the first ones, just with more mobility to have fun, tools to do cool stuff.
 Maybe can be after boss is beaten? Could have to go down and quickly grow out new life after lava cools off.
+After getting down, can use up all gained power to shed the metal shell of the pyramid, revealing the volcano beneath.
+Or leave it as a cautionary monument.
+
 
 Want to add power generators that power the robots and need to be destroyed. Not sure where to slot them in?
 
