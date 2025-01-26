@@ -168,6 +168,9 @@ Some pickups obvious, some hidden. Need only some to beat the game, but can do a
 Some areas enemies come at night, others triggered by picking up big power essence, or solving the puzzle, or something else.
 
 
+Elements work better in their area
+
+Uzturbint planta su cristalais
 
 ## Setting
 Post-war AI mama wakes up, starts overtaking nature.
