@@ -172,6 +172,9 @@ Elements work better in their area
 
 Uzturbint planta su cristalais
 
+
+In home farm, centipedes attack to drive player forward, also show that game has enemies
+
 ## Setting
 Post-war AI mama wakes up, starts overtaking nature.
 
@@ -189,6 +192,16 @@ Through quotes.
 Smooth movement.
 Good lighting.
 Maybe procedural animations? https://www.youtube.com/watch?v=e6Gjhr1IP6w&ab_channel=Codeer
+
+
+## Next tasks
+Find wine 3d asset
+add working player controller
+add ability to quickly grow plants around you
+ - grow garden plants
+add ability to conjure vines
+
+
 
 
 ---
