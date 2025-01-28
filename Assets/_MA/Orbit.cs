@@ -27,6 +27,6 @@ public class Orbit : MonoBehaviour
         // }
         // transform.position = position;
         
-        transform.Rotate(speed, 0f, 0f);
+        transform.Rotate(speed * Time.fixedDeltaTime, 0f, 0f);
     }
 }
