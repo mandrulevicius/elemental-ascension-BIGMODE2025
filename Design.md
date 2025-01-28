@@ -201,7 +201,7 @@ add working player controller
 add ability to quickly grow bonded (actual objects, not part of terrain) plants around you
  - grow garden plants
 add ability to conjure vines
-add ability to bond with plant (change from terrain to actual object)
+   (add ability to bond with plant (change from terrain to actual object))
 
 terrain template - only added all trees, not spawned in scene yet.
 also same all terrain layers
