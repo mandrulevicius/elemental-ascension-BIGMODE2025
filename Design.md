@@ -211,6 +211,7 @@ also same all terrain layers
 try to paint a good looking area. take references from red dead redemption2, horizon zero dawn??
 Start with full jungle, remove trees to make clearing
 
+go back to checkpoint button
 
 ( maybe after jam
 **Procedural Animation**
