@@ -197,7 +197,6 @@ Maybe procedural animations? https://www.youtube.com/watch?v=e6Gjhr1IP6w&ab_chan
 ## Next tasks
 ### MA
 Find wine 3d asset
-add working player controller
 add ability to quickly grow bonded (actual objects, not part of terrain) plants around you
  - grow garden plants
 add ability to conjure vines
