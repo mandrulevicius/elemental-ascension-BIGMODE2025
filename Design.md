@@ -196,17 +196,20 @@ Maybe procedural animations? https://www.youtube.com/watch?v=e6Gjhr1IP6w&ab_chan
 
 ## Next tasks
 ### MA
+tiki torches
 Find wine 3d asset
 add ability to quickly grow bonded (actual objects, not part of terrain) plants around you
  - grow garden plants
 add ability to conjure vines
    (add ability to bond with plant (change from terrain to actual object))
 
+add rest of colliders to trees (now only dragon tree has collision)
+
 terrain template - only added all trees, not spawned in scene yet.
 also same all terrain layers
 
 try to paint a good looking area. take references from red dead redemption2, horizon zero dawn??
-
+Start with full jungle, remove trees to make clearing
 
 
 ( maybe after jam
