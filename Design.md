@@ -203,7 +203,12 @@ add ability to quickly grow bonded (actual objects, not part of terrain) plants 
 add ability to conjure vines
 add ability to bond with plant (change from terrain to actual object)
 
+terrain template - only added all trees, not spawned in scene yet.
+also same all terrain layers
+
 try to paint a good looking area. take references from red dead redemption2, horizon zero dawn??
+
+
 
 ( maybe after jam
 **Procedural Animation**
