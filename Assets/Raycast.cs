@@ -33,8 +33,11 @@ public class Raycast : MonoBehaviour
             number = Random.Range(0f, 1f);
             //  + new Vector3(number, number, number)
         }
-        
-        _ray = new Ray(transform.position, _rayDirections[i]);
+
+
+        // Vector3 adjustedRayDirection = _rayDirections[i] + transform.rotation.eulerAngles;
+        Vector3 adjustedRayDirection = _rayDirections[i];
+        _ray = new Ray(transform.position, adjustedRayDirection.normalized);
 
         if (!Physics.Raycast(_ray, out _hit, maxDistance, layersToHit)) return;
         Debug.DrawRay(_ray.origin, _rayDirections[i], Color.red);
