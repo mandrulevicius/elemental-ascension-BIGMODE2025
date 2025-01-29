@@ -193,11 +193,67 @@ Smooth movement.
 Good lighting.
 Maybe procedural animations? https://www.youtube.com/watch?v=e6Gjhr1IP6w&ab_channel=Codeer
 
+## Enemy design
+Procedural animation is closer to how things animate in reality.
+
+Spider will jump, and in air will be floater.
+Depending on distance to ground, will adjust leg positions.
+
+Brain notices prey in jumping distance.
+(Cone raycast)
+Sends signal to legs. (Event)
+Legs move towards center while body rotates and lowers towards prey.
+(Raycast is pointing closer to center due to body being lower)
+Body rapidly ascends, spider gets pushed up/starts moving in arc towards target.
+()
+During ascent arc, body lowers to lowest, legs go to center.
+(Raycast targets are outside range of ground - target moved to center)
+
+During descent, body rises to max, legs extend toward target.
+(Leg target moves on target)
+On hit, body lowers to default.
+After hitting legs go back to default
+(Raycast reaches ground)
+
+If not reaching ground, target self or ground/prey where will land.
+
+
+
+!!! To fix rotation, need different starting positions for raycasts, not from center!!!
+
+ALSO LOCAL VS GLOBAL POSITIONS
+
+Need to see where raycasts hit - either upgrade debugdrawray or drawline.
+
+Need to see where target is.
+
+When legs need to move, move snap target in an arc towards hit.point.
+Can just do on fixed update - move the target where it should be this frame - calc arc based on distance from last ground contact and target - rise, if more than half way, lower.
+
+If leg in motion, either go towards the set hit.point or always try to reach current hit.point.
+Try both, see difference for both quadruped and bipedal movements.
+
+Spider rises on two feet to attack.
+
+No need for perfection - good enough and move on
+
+### spider vs floater vs centipede
+##### Common to all
+Senses - shared with AI, always see you? sends signals when in distance to do more that walk towards
+current leg positions, etc.
+- may have different distance
+
+attacks and walking are same stuff - target to move towards, current fixed position, arc based on distance.
+
+when attacking, leg goes not to default position raycast, but to prey marker
+
+##### Floater
+Doesnt have Raycasts for leg targets
+Has simple script to wiggle tentacles
+
 
 ## Next tasks
 ### MA
-glowing spider eyes
-tiki torches
 Find wine 3d asset
 add ability to quickly grow bonded (actual objects, not part of terrain) plants around you
  - grow garden plants
@@ -215,14 +271,16 @@ Start with full jungle, remove trees to make clearing
 go back to checkpoint button
 
 TENTACLE WIGGLING FOR FLOATER
+(leg target moves and rotates every frame)
 snake?
 
-( maybe after jam
-**Procedural Animation**
--create simple rig
--do inverse kinematics
--add raycast and movement to it
-)
+tiki torches?
+
+## Done
+Basic procedural animation
+terrain creation pipeline
+basic lighting
+character controller
 
 ---
 #### References
