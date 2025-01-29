@@ -1228,7 +1228,7 @@ GameObject:
   - component: {fileID: 2300248067918008473}
   - component: {fileID: 5659575943937961112}
   m_Layer: 0
-  m_Name: Rig 1
+  m_Name: RigSpiderRed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
