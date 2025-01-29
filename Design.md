@@ -196,6 +196,7 @@ Maybe procedural animations? https://www.youtube.com/watch?v=e6Gjhr1IP6w&ab_chan
 
 ## Next tasks
 ### MA
+glowing spider eyes
 tiki torches
 Find wine 3d asset
 add ability to quickly grow bonded (actual objects, not part of terrain) plants around you
