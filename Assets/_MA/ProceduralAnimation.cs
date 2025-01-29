@@ -6,10 +6,13 @@ using UnityEngine.Serialization;
 
 public class ProceduralAnimation : MonoBehaviour
 {
-    // maybe make a struct for each leg
+    
     [SerializeField] GameObject player;
     [SerializeField] float speed = 5f;
 
+    [SerializeField] GameObject body;
+    
+    // maybe make a struct for each leg
     [SerializeField] List<GameObject> thighHips;
     [SerializeField] List<GameObject> legTargets;
 
@@ -115,7 +118,8 @@ public class ProceduralAnimation : MonoBehaviour
         }
 
         _avgGroundPos /= legTargets.Count;
+        Debug.Log($"_avgGroundPos: {_avgGroundPos}, transform.position: {transform.position.y}");
         // transform.position = new Vector3(transform.position.x, (_avgGroundPos - transform.position.y) * speed * Time.deltaTime, transform.position.z);
-        // transform.position = new Vector3(transform.position.x, _avgGroundPos, transform.position.z);
+        body.transform.position = new Vector3(transform.position.x, _avgGroundPos + 1f, transform.position.z);
     }
 }
