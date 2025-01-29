@@ -214,6 +214,9 @@ Start with full jungle, remove trees to make clearing
 
 go back to checkpoint button
 
+TENTACLE WIGGLING FOR FLOATER
+snake?
+
 ( maybe after jam
 **Procedural Animation**
 -create simple rig

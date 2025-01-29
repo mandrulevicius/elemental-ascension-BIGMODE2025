@@ -37,7 +37,7 @@ public class Raycast : MonoBehaviour
 
         // Vector3 adjustedRayDirection = _rayDirections[i] + transform.rotation.eulerAngles;
         Vector3 adjustedRayDirection = _rayDirections[i];
-        _ray = new Ray(transform.position, adjustedRayDirection.normalized);
+        _ray = new Ray(transform.position, adjustedRayDirection);
 
         if (!Physics.Raycast(_ray, out _hit, maxDistance, layersToHit)) return;
         Debug.DrawRay(_ray.origin, _rayDirections[i], Color.red);
