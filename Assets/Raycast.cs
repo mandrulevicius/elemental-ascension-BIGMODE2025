@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,6 +11,9 @@ public class Raycast : MonoBehaviour
     private List<Vector3> _snapPositions = new ();
     private List<Vector3> _rayDirections = new ();
     [SerializeField] private float distanceToSnap = 1;
+    [SerializeField] private float number;
+
+    private float _tick;
 
     private void Start()
     {
@@ -24,6 +26,14 @@ public class Raycast : MonoBehaviour
 
     private void CheckForColliders(int i)
     {
+        _tick += 1;
+        if (_tick >= 60)
+        {
+            _tick = 0;
+            number = Random.Range(0f, 1f);
+            //  + new Vector3(number, number, number)
+        }
+        
         _ray = new Ray(transform.position, _rayDirections[i]);
 
         if (!Physics.Raycast(_ray, out _hit, maxDistance, layersToHit)) return;
@@ -36,7 +46,7 @@ public class Raycast : MonoBehaviour
         }
     }
 
-    public void Update()
+    public void FixedUpdate()
     {
         for (int i = 0; i < legTargets.Count; i++)
         {
