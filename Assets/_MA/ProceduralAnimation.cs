@@ -9,7 +9,8 @@ public class ProceduralAnimation : MonoBehaviour
     
     [SerializeField] GameObject player;
     [SerializeField] float speed = 5f;
-
+    Vector3 _movementDirection = Vector3.zero;
+    
     [SerializeField] GameObject body;
     
     // maybe make a struct for each leg
@@ -22,17 +23,15 @@ public class ProceduralAnimation : MonoBehaviour
     List<Ray> _rays = new ();
     Ray _tempRay;
     RaycastHit _hit;
+
+    Ray _groundRay;
     
     [SerializeField] float maxRayDistance = 2;
     [SerializeField] LayerMask layersToHit;
     
     [SerializeField] float distanceToSnap = 1;
-    // [SerializeField] float legSpeed = 1;
     [SerializeField] float legTargetVariation = 0.1f;
     [SerializeField] List<float> legStartOffsets = new() { 0f, 0.5f, 1f, -0.5f };
-    
-    // [SerializeField] private float number;
-    float _avgGroundPos;
 
     float _tick;
 
@@ -43,6 +42,8 @@ public class ProceduralAnimation : MonoBehaviour
     
     public void FixedUpdate()
     {
+        
+        _groundRay = new Ray(body.transform.position, Vector3.down);
         Tick();
         HuntPlayer();
         
@@ -78,9 +79,9 @@ public class ProceduralAnimation : MonoBehaviour
 
     void HuntPlayer()
     {
-        Vector3 direction = (player.transform.position - transform.position).normalized;
-        transform.position += direction * (speed * Time.fixedDeltaTime);
-        transform.LookAt(transform.position + direction);
+        _movementDirection = (player.transform.position - transform.position).normalized;
+        transform.position += _movementDirection * (speed * Time.fixedDeltaTime);
+        transform.LookAt(transform.position + _movementDirection);
     }
     
     void ProcessLeg(int i)
@@ -100,7 +101,7 @@ public class ProceduralAnimation : MonoBehaviour
         
 
         if (!(Vector3.Distance(_snapPositions[i], _hit.point) > distanceToSnap)) return;
-        _snapPositions[i] = _hit.point + new Vector3(
+        _snapPositions[i] = _hit.point + _movementDirection + new Vector3(
             Random.Range(-legTargetVariation, legTargetVariation),
             0,
             Random.Range(-legTargetVariation, legTargetVariation));
@@ -110,16 +111,16 @@ public class ProceduralAnimation : MonoBehaviour
     
     void LateUpdate()
     {
-        _avgGroundPos = 0;
+        _groundRay.origin = body.transform.position;    
+        Debug.DrawRay(_groundRay.origin, _groundRay.direction, Color.red);
+        if (Physics.Raycast(_groundRay, out _hit, maxRayDistance, layersToHit))
+        {
+            transform.position = _hit.point;
+        }
+        
         for (int i = 0; i < legTargets.Count; i++)
         {
             legTargets[i].transform.position = _snapPositions[i];
-            _avgGroundPos += legTargets[i].transform.position.y;
         }
-
-        _avgGroundPos /= legTargets.Count;
-        Debug.Log($"_avgGroundPos: {_avgGroundPos}, transform.position: {transform.position.y}");
-        // transform.position = new Vector3(transform.position.x, (_avgGroundPos - transform.position.y) * speed * Time.deltaTime, transform.position.z);
-        body.transform.position = new Vector3(transform.position.x, _avgGroundPos + 1f, transform.position.z);
     }
 }
