@@ -84,6 +84,7 @@ public class ProceduralAnimation : MonoBehaviour
         if (isCooldowning) return;
         HuntPlayer();
         if (isCooldowning) return;
+        // ParallelEnumerable.ForAll();
         for (int i = 0; i < legTargets.Count; i++)
         {
             ProcessLeg(i);
