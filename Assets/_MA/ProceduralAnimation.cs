@@ -205,6 +205,10 @@ public class ProceduralAnimation : MonoBehaviour
         // _snapPositions[i] += Vector3.Lerp(_snapPositions[i], _hit.point, Time.fixedDeltaTime * legSpeed);
     }
 
+    private void LerpingTheLeg()
+    {
+        
+    }
     void LateUpdate()
     {
         // snap legs
@@ -214,10 +218,24 @@ public class ProceduralAnimation : MonoBehaviour
             {
                 legTargets[i].transform.position = Vector3.Lerp(legTargets[i].transform.position, windUpTargets[i].transform.position, _tick/windUpTime);
             }
+            else if(isAttacking)
+            {
+             legTargets[i].transform.position = Vector3.Lerp(legTargets[i].transform.position, _snapPositions[i], _tick/attackTime);
+            }
+            else if (isWindingDown)
+            {
+             legTargets[i].transform.position = Vector3.Lerp(legTargets[i].transform.position, _snapPositions[i], _tick/windDownTime);
+            }   
+            else if (reset)
+            {
+             legTargets[i].transform.position = Vector3.Lerp(legTargets[i].transform.position, _snapPositions[i], _tick/cooldown);
+            }
             else
             {
-             legTargets[i].transform.position = Vector3.Lerp(legTargets[i].transform.position, _snapPositions[i], isCooldowning?_tick/attackTime:movementTick/legMovespeed);
+             legTargets[i].transform.position = Vector3.Lerp(legTargets[i].transform.position, _snapPositions[i], movementTick/legMovespeed);
             }
+            
+            
             if (movementTick >= legMovespeed)
             {
                 movementTick = 0;
