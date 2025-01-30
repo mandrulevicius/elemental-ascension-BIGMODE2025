@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class Player : MonoBehaviour
+public class EntityStats : MonoBehaviour
 {
     public event Action<float> OnMaxHealthChanged;
     [SerializeField] private float maxHealth;

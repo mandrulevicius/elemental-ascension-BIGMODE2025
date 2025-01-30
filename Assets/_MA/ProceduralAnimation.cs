@@ -51,6 +51,7 @@ public class ProceduralAnimation : MonoBehaviour
     public bool legChange;
     public bool isWindingDown;
     public bool reset;
+    [SerializeField] private int attackingLeg;
 
     void Start()
     {
@@ -149,17 +150,25 @@ public class ProceduralAnimation : MonoBehaviour
     {
         _movementDirection = (_player.transform.position - transform.position).normalized;
         transform.position += _movementDirection * (speed * Time.fixedDeltaTime);
-        transform.LookAt(new Vector3(_player.transform.position.x, transform.position.y, _player.transform.position.z));
 
         var distanceToPlayer = Vector3.Distance(_player.transform.position, transform.position);
+        if(distanceToPlayer > maxLegReach)
+        transform.LookAt(new Vector3(_player.transform.position.x, transform.position.y, _player.transform.position.z));
         if (distanceToPlayer <= maxLegReach)
         {
             if (Physics.Raycast(_frontRay, out _hit, maxLegReach, layersToHit))
             {
                 // transform.LookAt(new Vector3(_hit.point.x, _hit.point.y + 1, _hit.point.z)); // delta time here
-                
-                _snapPositions[0] = _hit.point+_movementDirection;
+                if (Vector3.Distance(_snapPositions[0], _hit.point) < Vector3.Distance(_snapPositions[1], _hit.point))
+                {
+                _snapPositions[0] = _hit.point;
+                attackingLeg = 0;
+                }
+                else
+                {
+                attackingLeg = 1;
                 _snapPositions[1] = _hit.point;
+                }
                 windUp = true;
                 _tick = 0;
                 isCooldowning = true;
@@ -205,16 +214,13 @@ public class ProceduralAnimation : MonoBehaviour
         // _snapPositions[i] += Vector3.Lerp(_snapPositions[i], _hit.point, Time.fixedDeltaTime * legSpeed);
     }
 
-    private void LerpingTheLeg()
-    {
-        
-    }
+ 
     void LateUpdate()
     {
         // snap legs
         for (int i = 0; i < legTargets.Count; i++)
         {
-            if (windUp && i < windUpTargets.Count) 
+            if (windUp && i == attackingLeg) 
             {
                 legTargets[i].transform.position = Vector3.Lerp(legTargets[i].transform.position, windUpTargets[i].transform.position, _tick/windUpTime);
             }
