@@ -17,8 +17,7 @@ public class ParticleActions : MonoBehaviour
     {
             
     }
-
-    // Update is called once per frame
+        
 
     private void OnCollisionEnter(Collision other)
     {
@@ -26,10 +25,12 @@ public class ParticleActions : MonoBehaviour
         EntityStats stats = other.gameObject.GetComponent<EntityStats>();
         if (stats != null)
         {
+            Debug.Log("HIT");
             stats.Health -= damage;
+            GetComponent<EntityStats>().Health -= damage;
             
         }
-        gameObject.GetComponent<EntityStats>().Health -= damage;
+        // should also explode when hits anything other than itself?
     }
 
     

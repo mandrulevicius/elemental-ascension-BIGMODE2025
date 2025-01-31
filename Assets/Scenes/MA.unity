@@ -2670,7 +2670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f1829987ea2c464980529f0e278f823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  plant: {fileID: 1209338088751089180, guid: 172bf522076cb6b42be1342abe2fa4fc, type: 3}
+  plant: {fileID: 1299261345072966613, guid: b3cdcf7c634260c4b91965c1f5204b0a, type: 3}
   CinemachineCamera: {fileID: 783277482}
   castRange: 10
   layersToHit:
