@@ -10,7 +10,7 @@ public class PlantActions : MonoBehaviour
     private float _tick;
     private float _spawnTick;
     [SerializeField] private float spawnTime = 600f;
-    [SerializeField] private float castRange = 20f;
+    [SerializeField] private float castRange = 0.4f;
     [SerializeField] private float attackSpeed = 5f;
     private bool _attack;
     private Vector3 _hit;
@@ -22,9 +22,9 @@ public class PlantActions : MonoBehaviour
     {
         _particleLayer = LayerMask.GetMask("Particles");
         _playerLayer = LayerMask.GetMask("Player");
-        float randomRadius = Random.Range(1f, castRange);
+        float randomRadius = Random.Range(0.2f, castRange);
         Vector3 randomDirection = Random.insideUnitSphere.normalized;
-        Vector3 spawnPosition = transform.position + randomDirection * randomRadius; // Offset by radius
+        Vector3 spawnPosition = transform.position + Vector3.up * 2 + randomDirection * randomRadius; // Offset by radius
         _lastSpawn = Instantiate(particle, spawnPosition, Quaternion.identity);
     }
 
@@ -42,7 +42,7 @@ public class PlantActions : MonoBehaviour
             {
                 float randomRadius = Random.Range(1f, castRange);
                 Vector3 randomDirection = Random.insideUnitSphere.normalized;
-                Vector3 spawnPosition = transform.position + randomDirection * randomRadius; // Offset by radius
+                Vector3 spawnPosition = transform.position + Vector3.up * 2  + randomDirection * randomRadius; // Offset by radius
                 _lastSpawn = Instantiate(particle, spawnPosition, Quaternion.identity);
             }
 

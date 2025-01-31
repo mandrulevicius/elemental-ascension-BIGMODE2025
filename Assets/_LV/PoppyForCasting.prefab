@@ -81,8 +81,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 6015679753469681531, guid: 8352047030b4dae4c855eb0b105551d6, type: 3}
-  spawnTime: 500
-  castRange: 6
+  spawnTime: 50
+  castRange: 0.4
   attackSpeed: 120
 --- !u!1 &4553906106788515663
 GameObject:
