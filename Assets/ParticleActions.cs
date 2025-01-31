@@ -27,8 +27,9 @@ public class ParticleActions : MonoBehaviour
         if (stats != null)
         {
             stats.Health -= damage;
-            Destroy(gameObject);
+            
         }
+        gameObject.GetComponent<EntityStats>().Health -= damage;
     }
 
     

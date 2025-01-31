@@ -4,6 +4,7 @@ using UnityEngine.Serialization;
 
 public class EntityStats : MonoBehaviour
 {
+    [SerializeField] GameObject deathEffect;
     public event Action<float> OnMaxHealthChanged;
     [SerializeField] private float maxHealth;
     public float MaxHealth
@@ -24,10 +25,6 @@ public class EntityStats : MonoBehaviour
 
     public event Action<float> OnHealthChanged;
     [SerializeField] private float health;
-    
-    
-    [SerializeField] public bool dead;
-
     public float Health
     {
         get => health;
@@ -41,17 +38,21 @@ public class EntityStats : MonoBehaviour
             {
                 dead = true;
                 OnDestruction?.Invoke();
+                deathEffect.SetActive(true);
+                Destroy(gameObject, 1f);
                 // Destroy(selfPrefab, 0f);
             }
         }
     }
     
+    [SerializeField] public bool dead;
+    public event Action OnDeath;
     public event Action OnDestruction;
     
     
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
