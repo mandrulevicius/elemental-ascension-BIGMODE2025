@@ -4,7 +4,7 @@ using UnityEngine.Serialization;
 
 public class EntityStats : MonoBehaviour
 {
-    [SerializeField] GameObject deathEffect;
+    [SerializeField] ParticleSystem deathEffectParticles;
     public event Action<float> OnMaxHealthChanged;
     [SerializeField] private float maxHealth;
     public float MaxHealth
@@ -38,7 +38,7 @@ public class EntityStats : MonoBehaviour
             {
                 dead = true;
                 OnDestruction?.Invoke();
-                deathEffect.SetActive(true);
+                deathEffectParticles.Play();
                 Destroy(gameObject, 1f);
                 // Destroy(selfPrefab, 0f);
             }

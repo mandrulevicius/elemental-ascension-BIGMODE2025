@@ -25,10 +25,9 @@ public class ParticleActions : MonoBehaviour
         EntityStats stats = other.gameObject.GetComponent<EntityStats>();
         if (stats != null)
         {
-            Debug.Log("HIT");
             stats.Health -= damage;
             GetComponent<EntityStats>().Health -= damage;
-            
+                
         }
         // should also explode when hits anything other than itself?
     }
