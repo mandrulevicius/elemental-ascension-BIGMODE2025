@@ -2413,7 +2413,7 @@ MonoBehaviour:
   maxLegReach: 4
   layersToHit:
     serializedVersion: 2
-    m_Bits: 384
+    m_Bits: 256
   distanceToSnap: 1
   legTargetVariation: 0.1
   legStartOffsets:
@@ -2498,6 +2498,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9f1e4eebb781c4439a58a94a7a07cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathEffectParticles: {fileID: 0}
   maxHealth: 10
   health: 10
   dead: 0
