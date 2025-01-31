@@ -99,6 +99,12 @@ public class ProceduralAnimation : MonoBehaviour
 
         movementTick += 1;
 
+        // ParallelEnumerable.ForAll();
+        for (int i = 0; i < legTargets.Count; i++)
+        {
+            ProcessLeg(i);
+        }
+        
         if (!_pray && movementTick % 20 == 0)
         {
             other = Physics.OverlapSphere(transform.position, range, preyLayer);
@@ -113,12 +119,8 @@ public class ProceduralAnimation : MonoBehaviour
             }
         }
 
+        
         HuntPlayer();
-        // ParallelEnumerable.ForAll();
-        for (int i = 0; i < legTargets.Count; i++)
-        {
-            ProcessLeg(i);
-        }
 
         // stay above ground
         _groundRay.origin = body.transform.position;
@@ -191,7 +193,7 @@ public class ProceduralAnimation : MonoBehaviour
             transform.LookAt(new Vector3(_pray.transform.position.x, transform.position.y, _pray.transform.position.z));
         if (distanceToPlayer <= maxLegReach)
         {
-            if (Physics.Raycast(_frontRay, out _hit, maxLegReach, layersToHit))
+            if (Physics.Raycast(_frontRay, out _hit, maxLegReach, preyLayer))
             {
                 // transform.LookAt(new Vector3(_hit.point.x, _hit.point.y + 1, _hit.point.z)); // delta time here
                 if (Vector3.Distance(_snapPositions[0], _hit.point) < Vector3.Distance(_snapPositions[1], _hit.point))
