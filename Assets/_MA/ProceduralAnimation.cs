@@ -6,7 +6,7 @@ using UnityEngine.Serialization;
 public class ProceduralAnimation : MonoBehaviour
 {
     [SerializeField] LayerMask preyLayer;
-    GameObject _player;
+    GameObject _pray;
 
     [SerializeField] GameObject body;
 
@@ -43,6 +43,7 @@ public class ProceduralAnimation : MonoBehaviour
     [SerializeField] private float windDownTime = 15;
     [SerializeField] private float cooldown = 60;
     [SerializeField] float speed = 5f;
+    [SerializeField] private float range = 5f;
     [SerializeField] private float legMovespeed = 60f;
     [SerializeField] private float legLiftSpeed = 0.02f;
     public bool isCooldowning;
@@ -52,10 +53,13 @@ public class ProceduralAnimation : MonoBehaviour
     public bool isWindingDown;
     public bool reset;
     [SerializeField] private int attackingLeg;
+    private Collider[] other;
+    private EntityStats stats;
 
     void Start()
     {
-        _player = GameObject.FindObjectsByType<GameObject>(FindObjectsInactive.Exclude, FindObjectsSortMode.None)
+        stats = GetComponent<EntityStats>();
+        _pray = GameObject.FindObjectsByType<GameObject>(FindObjectsInactive.Exclude, FindObjectsSortMode.None)
             .FirstOrDefault(obj => ((1 << obj.layer) & preyLayer) != 0);
 
         _groundRay = new Ray(body.transform.position, Vector3.down);
@@ -79,11 +83,21 @@ public class ProceduralAnimation : MonoBehaviour
 
     public void FixedUpdate()
     {
+        if(stats.dead ) return;
+        if (isCooldowning)
+        {
+            Tick();
+            return;
+        }
         movementTick += 1;
-        if (isCooldowning) Tick();
-        if (isCooldowning) return;
+
+        if (!_pray && movementTick%20 ==0)
+        {
+            other =  Physics.OverlapSphere(transform.position, range, preyLayer);
+            if(other.Length>0)
+            _pray = other[0].gameObject;
+        }
         HuntPlayer();
-        if (isCooldowning) return;
         // ParallelEnumerable.ForAll();
         for (int i = 0; i < legTargets.Count; i++)
         {
@@ -92,8 +106,10 @@ public class ProceduralAnimation : MonoBehaviour
 
         // stay above ground
         _groundRay.origin = body.transform.position;
-        _groundRay.direction = Vector3.down;
-        Debug.DrawRay(_groundRay.origin, _groundRay.direction, Color.red);
+        
+        
+      
+        _groundRay.direction = new Vector3(0,0,0);
         if (Physics.Raycast(_groundRay, out _hit, maxLegReach, layersToHit))
         {
             transform.position = _hit.point;
@@ -101,7 +117,6 @@ public class ProceduralAnimation : MonoBehaviour
 
         _frontRay.origin = body.transform.position;
         _frontRay.direction = _movementDirection;
-        Debug.DrawRay(_frontRay.origin, _frontRay.direction, Color.red);
         if (Physics.Raycast(_frontRay, out _hit, maxLegReach, layersToHit))
         {
             // transform.LookAt(new Vector3(_hit.point.x, _hit.point.y + 1, _hit.point.z)); // delta time here
@@ -149,12 +164,13 @@ public class ProceduralAnimation : MonoBehaviour
 
     void HuntPlayer()
     {
-        _movementDirection = (_player.transform.position - transform.position).normalized;
+        if(!_pray )return;
+        _movementDirection = (_pray.transform.position - transform.position).normalized;
         transform.position += _movementDirection * (speed * Time.fixedDeltaTime);
 
-        var distanceToPlayer = Vector3.Distance(_player.transform.position, transform.position);
+        var distanceToPlayer = Vector3.Distance(_pray.transform.position, transform.position);
         if(distanceToPlayer > maxLegReach)
-        transform.LookAt(new Vector3(_player.transform.position.x, transform.position.y, _player.transform.position.z));
+        transform.LookAt(new Vector3(_pray.transform.position.x, transform.position.y, _pray.transform.position.z));
         if (distanceToPlayer <= maxLegReach)
         {
             if (Physics.Raycast(_frontRay, out _hit, maxLegReach, layersToHit))
@@ -218,6 +234,12 @@ public class ProceduralAnimation : MonoBehaviour
  
     void LateUpdate()
     {
+        if (!isCooldowning)
+        {
+            for (int i = 0; i < legTargets.Count; i++)
+                legTargets[i].transform.position = Vector3.Lerp(legTargets[i].transform.position, _snapPositions[i], movementTick/legMovespeed);
+            return;
+        }
         // snap legs
         for (int i = 0; i < legTargets.Count; i++)
         {
@@ -243,10 +265,6 @@ public class ProceduralAnimation : MonoBehaviour
             }
             
             
-            if (movementTick >= legMovespeed)
-            {
-                movementTick = 0;
-            }
         }
     }
 }

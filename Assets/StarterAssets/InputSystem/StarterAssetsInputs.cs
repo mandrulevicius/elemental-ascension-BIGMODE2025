@@ -21,6 +21,7 @@ namespace StarterAssets
 		public bool cursorInputForLook = true;
 		public bool action;
 		public bool grow;
+		public bool taking;
 
 
 #if ENABLE_INPUT_SYSTEM
@@ -53,6 +54,10 @@ namespace StarterAssets
 		public void OnGrow(InputValue value)
 		{
 			Grow(value.isPressed);
+		}
+		public void OnTaking(InputValue value)
+		{
+			Taking(value.isPressed);
 		}
 #endif
 
@@ -87,6 +92,9 @@ namespace StarterAssets
 		}	private void Grow(bool newGrow)
 		{
 			grow = newGrow;
+		}	private void Taking(bool newTaking)
+		{
+			taking = newTaking;
 		}
 
 		private void SetCursorState(bool newState)

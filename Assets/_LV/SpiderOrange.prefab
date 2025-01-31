@@ -2269,6 +2269,7 @@ GameObject:
   - component: {fileID: 997238456263221099}
   - component: {fileID: 5984760254617971518}
   - component: {fileID: 3649028940681148641}
+  - component: {fileID: -8568585512919104522}
   m_Layer: 10
   m_Name: SpiderOrange
   m_TagString: Untagged
@@ -2427,6 +2428,7 @@ MonoBehaviour:
   windDownTime: 25
   cooldown: 25
   speed: 3
+  range: 5
   legMovespeed: 60
   legLiftSpeed: 0.02
   isCooldowning: 0
@@ -2483,6 +2485,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.18, y: 0.18, z: 0.15}
   m_Center: {x: 0, y: 0.13, z: 0}
+--- !u!114 &-8568585512919104522
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5632521191423712832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f1e4eebb781c4439a58a94a7a07cfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  health: 10
+  dead: 0
 --- !u!1 &5763945937693324166
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,15 +26,16 @@ public class PlayerActions : MonoBehaviour
     {
        Action();
        Growing();
+       Taking();
     }
 
     public void Action()
     {
         if (_inputs.action)
         {
+                _inputs.action = false;
             if(Physics.Raycast(new Ray(CinemachineCamera.transform.position, CinemachineCamera.transform.forward),
                    out _hit, castRange, layersToHit))
-                _inputs.action = false;
             Instantiate(plant, _hit.point, Quaternion.identity);
         }
     }
@@ -47,6 +48,18 @@ public class PlayerActions : MonoBehaviour
             for (int i = 0; i < colliders.Length; i++)
             {
                 colliders[i].gameObject.transform.localScale += new Vector3(0.02f, 0.02f, 0.02f);
+            }
+        }
+    }    
+    public void Taking()
+    {
+        if (_inputs.taking)
+        {
+            _inputs.taking = false;
+            Collider[] colliders = Physics.OverlapSphere(transform.position, castRange, whatIsPlant);
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                Destroy(colliders[i].gameObject);
             }
         }
     }

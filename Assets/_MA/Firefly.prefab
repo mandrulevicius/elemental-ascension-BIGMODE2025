@@ -12,6 +12,9 @@ GameObject:
   - component: {fileID: 2909237242159384492}
   - component: {fileID: 4280054896531237085}
   - component: {fileID: 4259899115179344196}
+  - component: {fileID: 3250634964819172695}
+  - component: {fileID: 146035637275887224}
+  - component: {fileID: 4793961853278373480}
   m_Layer: 11
   m_Name: Firefly
   m_TagString: Untagged
@@ -103,12 +106,103 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &3250634964819172695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6015679753469681531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cadd486ef71968449eeba21b5ce3376, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemies:
+    serializedVersion: 2
+    m_Bits: 0
+  _enemy: {fileID: 0}
+  range: 5
+  speed: 5
+  damage: 1
+--- !u!114 &146035637275887224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6015679753469681531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef943f704059ceb4cbf2265c56a54505, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  preyLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  body: {fileID: 6015679753469681531}
+  thighHips: []
+  legTargets: []
+  windUpTargets: []
+  maxLegReach: 2
+  layersToHit:
+    serializedVersion: 2
+    m_Bits: 0
+  distanceToSnap: 1
+  legTargetVariation: 0.1
+  legStartOffsets:
+  - 0
+  - 0.5
+  - 1
+  - -0.5
+  _tick: 0
+  isAttacking: 0
+  windUpTime: 20
+  attackTime: 10
+  windDownTime: 15
+  cooldown: 60
+  speed: 5
+  legMovespeed: 60
+  legLiftSpeed: 0.02
+  isCooldowning: 0
+  windUp: 0
+  legChange: 0
+  isWindingDown: 0
+  reset: 0
+  attackingLeg: 0
+--- !u!54 &4793961853278373480
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6015679753469681531}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &8524977248042745655
 GameObject:
   m_ObjectHideFlags: 0

@@ -26,7 +26,7 @@ public class EntityStats : MonoBehaviour
     [SerializeField] private float health;
     
     
-    [SerializeField] bool dead;
+    [SerializeField] public bool dead;
 
     public float Health
     {
