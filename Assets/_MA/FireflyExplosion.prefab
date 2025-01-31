@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5608960109415752780}
   - component: {fileID: 3543108578963575561}
   - component: {fileID: 927073805913688293}
+  - component: {fileID: 1083967059406922646}
   m_Layer: 0
   m_Name: FireflyExplosion
   m_TagString: Untagged
@@ -4893,6 +4894,18 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &1083967059406922646
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 461282861555182357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02069977331cda640b509a697fe65fb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2232229232514317157
 GameObject:
   m_ObjectHideFlags: 0
@@ -4910,7 +4923,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2052494002165417505
 Transform:
   m_ObjectHideFlags: 0
@@ -4982,7 +4995,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 2.7106596e-20, y: 1.92865e-39, z: 3.5688e-41, w: 0}
+  m_BoundingSphereOverride: {x: 5.27e-43, y: 1.42e-43, z: 0, w: 4.3e-44}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
@@ -5031,7 +5044,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4611034900917300603
 Transform:
   m_ObjectHideFlags: 0
