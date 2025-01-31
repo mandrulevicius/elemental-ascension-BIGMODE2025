@@ -38,7 +38,8 @@ public class EntityStats : MonoBehaviour
             {
                 dead = true;
                 OnDestruction?.Invoke();
-                Instantiate(deathEffectParticles, transform.position, Quaternion.identity);
+                var deathParticle = Instantiate(deathEffectParticles, transform.position, Quaternion.identity);
+                Destroy(deathParticle, deathParticle.main.duration);
                 Destroy(gameObject, 1f);
                 // Destroy(selfPrefab, 0f);
             }
