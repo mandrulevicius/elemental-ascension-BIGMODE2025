@@ -300,6 +300,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpiderOrange
       objectReference: {fileID: 0}
+    - target: {fileID: 5984760254617971518, guid: 8d6680ecd5994c8419f824bda85bf8ec, type: 3}
+      propertyPath: m_Drag
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

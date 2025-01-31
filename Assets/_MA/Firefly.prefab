@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3250634964819172695}
   - component: {fileID: 146035637275887224}
   - component: {fileID: 4793961853278373480}
+  - component: {fileID: 5962547406864003299}
   m_Layer: 11
   m_Name: Firefly
   m_TagString: Untagged
@@ -127,7 +128,6 @@ MonoBehaviour:
   _enemies:
     serializedVersion: 2
     m_Bits: 0
-  _enemy: {fileID: 0}
   range: 5
   speed: 5
   damage: 1
@@ -168,6 +168,7 @@ MonoBehaviour:
   windDownTime: 15
   cooldown: 60
   speed: 5
+  range: 5
   legMovespeed: 60
   legLiftSpeed: 0.02
   isCooldowning: 0
@@ -176,6 +177,7 @@ MonoBehaviour:
   isWindingDown: 0
   reset: 0
   attackingLeg: 0
+  dieTime: 240
 --- !u!54 &4793961853278373480
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -184,7 +186,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6015679753469681531}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 100
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -203,6 +205,21 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &5962547406864003299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6015679753469681531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9f1e4eebb781c4439a58a94a7a07cfd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 1
+  health: 0
+  dead: 0
 --- !u!1 &8524977248042745655
 GameObject:
   m_ObjectHideFlags: 0

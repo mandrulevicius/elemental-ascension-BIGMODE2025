@@ -13,7 +13,7 @@ public class ProceduralAnimation : MonoBehaviour
     // maybe make a struct for each leg
     [SerializeField] List<GameObject> thighHips;
     [SerializeField] List<GameObject> legTargets;
-    [SerializeField]  List<GameObject> windUpTargets ;
+    [SerializeField] List<GameObject> windUpTargets;
 
     List<Vector3> _localRestPositions = new();
     List<Vector3> _snapPositions = new();
@@ -55,6 +55,8 @@ public class ProceduralAnimation : MonoBehaviour
     [SerializeField] private int attackingLeg;
     private Collider[] other;
     private EntityStats stats;
+    private float _deathTick;
+    [SerializeField] private float dieTime = 240;
 
     void Start()
     {
@@ -83,20 +85,34 @@ public class ProceduralAnimation : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if(stats.dead ) return;
+        if (stats.dead)
+        {
+            _deathTick += 1;
+            return;
+        }
+
         if (isCooldowning)
         {
             Tick();
             return;
         }
+
         movementTick += 1;
 
-        if (!_pray && movementTick%20 ==0)
+        if (!_pray && movementTick % 20 == 0)
         {
-            other =  Physics.OverlapSphere(transform.position, range, preyLayer);
-            if(other.Length>0)
-            _pray = other[0].gameObject;
+            other = Physics.OverlapSphere(transform.position, range, preyLayer);
+            for (int i = 0; i < other.Length; i++)
+            {
+                if (other[i].gameObject.GetComponent<EntityStats>().dead)
+                {
+                    continue;
+                }
+                _pray = other[i].gameObject;
+                break;
+            }
         }
+
         HuntPlayer();
         // ParallelEnumerable.ForAll();
         for (int i = 0; i < legTargets.Count; i++)
@@ -106,10 +122,9 @@ public class ProceduralAnimation : MonoBehaviour
 
         // stay above ground
         _groundRay.origin = body.transform.position;
-        
-        
-      
-        _groundRay.direction = new Vector3(0,0,0);
+
+
+        _groundRay.direction = new Vector3(0, 0, 0);
         if (Physics.Raycast(_groundRay, out _hit, maxLegReach, layersToHit))
         {
             transform.position = _hit.point;
@@ -134,19 +149,22 @@ public class ProceduralAnimation : MonoBehaviour
             windUp = false;
             isAttacking = true;
         }
+
         if (_tick >= attackTime && isAttacking)
         {
             _tick = 0;
             isAttacking = false;
-          
+
             isWindingDown = true;
         }
+
         if (_tick >= windDownTime && isWindingDown)
         {
             for (int i = 0; i < legTargets.Count; i++)
             {
                 ProcessLeg(i);
             }
+
             isWindingDown = false;
             reset = true;
             _tick = 0;
@@ -155,7 +173,7 @@ public class ProceduralAnimation : MonoBehaviour
         if (_tick >= cooldown && reset)
         {
             reset = false;
-            isCooldowning = false;  
+            isCooldowning = false;
             _tick = 0;
             movementTick = 0;
             legChange = true;
@@ -164,13 +182,13 @@ public class ProceduralAnimation : MonoBehaviour
 
     void HuntPlayer()
     {
-        if(!_pray )return;
+        if (!_pray) return;
         _movementDirection = (_pray.transform.position - transform.position).normalized;
         transform.position += _movementDirection * (speed * Time.fixedDeltaTime);
 
         var distanceToPlayer = Vector3.Distance(_pray.transform.position, transform.position);
-        if(distanceToPlayer > maxLegReach)
-        transform.LookAt(new Vector3(_pray.transform.position.x, transform.position.y, _pray.transform.position.z));
+        if (distanceToPlayer > maxLegReach)
+            transform.LookAt(new Vector3(_pray.transform.position.x, transform.position.y, _pray.transform.position.z));
         if (distanceToPlayer <= maxLegReach)
         {
             if (Physics.Raycast(_frontRay, out _hit, maxLegReach, layersToHit))
@@ -178,14 +196,15 @@ public class ProceduralAnimation : MonoBehaviour
                 // transform.LookAt(new Vector3(_hit.point.x, _hit.point.y + 1, _hit.point.z)); // delta time here
                 if (Vector3.Distance(_snapPositions[0], _hit.point) < Vector3.Distance(_snapPositions[1], _hit.point))
                 {
-                _snapPositions[0] = _hit.point;
-                attackingLeg = 0;
+                    _snapPositions[0] = _hit.point;
+                    attackingLeg = 0;
                 }
                 else
                 {
-                attackingLeg = 1;
-                _snapPositions[1] = _hit.point;
+                    attackingLeg = 1;
+                    _snapPositions[1] = _hit.point;
                 }
+
                 windUp = true;
                 _tick = 0;
                 isCooldowning = true;
@@ -231,40 +250,54 @@ public class ProceduralAnimation : MonoBehaviour
         // _snapPositions[i] += Vector3.Lerp(_snapPositions[i], _hit.point, Time.fixedDeltaTime * legSpeed);
     }
 
- 
+
     void LateUpdate()
     {
+        if (stats.dead)
+        {
+            if (_deathTick >= dieTime)
+            {
+                Destroy(gameObject);
+                return;
+            }
+        }
+
         if (!isCooldowning)
         {
             for (int i = 0; i < legTargets.Count; i++)
-                legTargets[i].transform.position = Vector3.Lerp(legTargets[i].transform.position, _snapPositions[i], movementTick/legMovespeed);
+                legTargets[i].transform.position = Vector3.Lerp(legTargets[i].transform.position, _snapPositions[i],
+                    movementTick / legMovespeed);
             return;
         }
+
         // snap legs
         for (int i = 0; i < legTargets.Count; i++)
         {
-            if (windUp && i == attackingLeg) 
+            if (windUp && i == attackingLeg)
             {
-                legTargets[i].transform.position = Vector3.Lerp(legTargets[i].transform.position, windUpTargets[i].transform.position, _tick/windUpTime);
+                legTargets[i].transform.position = Vector3.Lerp(legTargets[i].transform.position,
+                    windUpTargets[i].transform.position, _tick / windUpTime);
             }
-            else if(isAttacking)
+            else if (isAttacking)
             {
-             legTargets[i].transform.position = Vector3.Lerp(legTargets[i].transform.position, _snapPositions[i], _tick/attackTime);
+                legTargets[i].transform.position = Vector3.Lerp(legTargets[i].transform.position, _snapPositions[i],
+                    _tick / attackTime);
             }
             else if (isWindingDown)
             {
-             legTargets[i].transform.position = Vector3.Lerp(legTargets[i].transform.position, _snapPositions[i], _tick/windDownTime);
-            }   
+                legTargets[i].transform.position = Vector3.Lerp(legTargets[i].transform.position, _snapPositions[i],
+                    _tick / windDownTime);
+            }
             else if (reset)
             {
-             legTargets[i].transform.position = Vector3.Lerp(legTargets[i].transform.position, _snapPositions[i], _tick/cooldown);
+                legTargets[i].transform.position = Vector3.Lerp(legTargets[i].transform.position, _snapPositions[i],
+                    _tick / cooldown);
             }
             else
             {
-             legTargets[i].transform.position = Vector3.Lerp(legTargets[i].transform.position, _snapPositions[i], movementTick/legMovespeed);
+                legTargets[i].transform.position = Vector3.Lerp(legTargets[i].transform.position, _snapPositions[i],
+                    movementTick / legMovespeed);
             }
-            
-            
         }
     }
 }
