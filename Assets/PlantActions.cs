@@ -9,6 +9,7 @@ public class PlantActions : MonoBehaviour
 
     private float _tick;
     private float _spawnTick;
+    private float _growthTick;
     [SerializeField] private float spawnTime = 600f;
     [SerializeField] private float castRange = 0.4f;
     [SerializeField] private float attackSpeed = 5f;
@@ -16,10 +17,16 @@ public class PlantActions : MonoBehaviour
     private Vector3 _hit;
     private Vector3 _projectile;
     private GameObject _lastSpawn;
+    
+    private Vector3 _fullyGrownScale;
+    [SerializeField] int ticksUntilFullyGrown = 120;
+    [SerializeField] bool fullyGrown;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        _fullyGrownScale = transform.localScale;
+        transform.localScale = Vector3.zero;
         _particleLayer = LayerMask.GetMask("Particles");
         _playerLayer = LayerMask.GetMask("Player");
         float randomRadius = Random.Range(0.2f, castRange);
@@ -85,6 +92,18 @@ public class PlantActions : MonoBehaviour
         // findEnemy
         // findPlayer
         // move
+
+        if (!fullyGrown)
+        {
+            _growthTick += 1;
+            if (_growthTick >= ticksUntilFullyGrown)
+            {
+                fullyGrown = true;
+            }
+            transform.localScale += _fullyGrownScale / ticksUntilFullyGrown;
+        };
+        
+        
     }
 
     void LateUpdate()

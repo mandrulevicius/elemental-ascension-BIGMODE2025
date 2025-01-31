@@ -16,9 +16,9 @@ public class ParticleActions : MonoBehaviour
         private bool enemyInRange;
         [SerializeField] int ticksUntilFullyGrown = 120;
 
-        private Vector3 _fullyGrownScale;
         Vector3 _startPosition;
         [SerializeField] float growthVibration = 0.01f;
+        private Vector3 _fullyGrownScale;
         [SerializeField] bool fullyGrown;
 
         [SerializeField] LayerMask friends;
@@ -27,8 +27,8 @@ public class ParticleActions : MonoBehaviour
     {
         
         for (int j = 0; j < 32; j++) if ((friends.value & (1 << j)) != 0) Physics.IgnoreLayerCollision(gameObject.layer, j, true);  
-        _fullyGrownScale = transform.localScale;
         _startPosition = transform.position;
+        _fullyGrownScale = transform.localScale;
         transform.localScale = Vector3.zero;
         // add this to plants too
     }
