@@ -22,8 +22,13 @@ public class ParticleActions : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        Destroy(gameObject);
-        other.gameObject.GetComponent<EntityStats>().Health -= damage;
+
+        EntityStats stats = other.gameObject.GetComponent<EntityStats>();
+        if (stats != null)
+        {
+            stats.Health -= damage;
+            Destroy(gameObject);
+        }
     }
 
     
