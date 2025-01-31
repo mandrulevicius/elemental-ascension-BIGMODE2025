@@ -129,8 +129,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   range: 5
-  speed: 5
+  speed: 50
   damage: 1
+  ticksUntilFullyGrown: 100
+  growthVibration: 0.01
+  fullyGrown: 0
+  friends:
+    serializedVersion: 2
+    m_Bits: 2560
 --- !u!114 &146035637275887224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +173,7 @@ MonoBehaviour:
   attackTime: 10
   windDownTime: 15
   cooldown: 60
-  speed: 5
+  speed: 30
   range: 5
   legMovespeed: 60
   legLiftSpeed: 0.02
