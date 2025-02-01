@@ -2,13 +2,26 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
-public class MultiColliderGenerator : EditorWindow {
-  [MenuItem("Tools/Generate Multiple Colliders")]
+public class MultiColliderGeneratorAdaptive : EditorWindow {
+  [SerializeField] private int maxColliderCount = 10;
+  [SerializeField] private float minColliderY = 2.0f; // Only consider triangles with centroid.y >= this value
+
+  // DBSCAN parameters – you may want to adjust these
+  [SerializeField] private float eps = 0.5f;   // maximum distance for neighbors (in world units)
+  [SerializeField] private int minPts = 1;       // minimum points to form a cluster
+
+  [MenuItem("Tools/Generate Adaptive Colliders")]
   public static void ShowWindow() {
-    GetWindow(typeof(MultiColliderGenerator));
+    GetWindow<MultiColliderGeneratorAdaptive>("Adaptive Collider Generator");
   }
 
   void OnGUI() {
+    GUILayout.Label("Adaptive Collider Generation Settings", EditorStyles.boldLabel);
+    maxColliderCount = EditorGUILayout.IntField("Max Collider Count", maxColliderCount);
+    minColliderY = EditorGUILayout.FloatField("Min Collider Y", minColliderY);
+    eps = EditorGUILayout.FloatField("DBSCAN eps", eps);
+    minPts = EditorGUILayout.IntField("DBSCAN minPts", minPts);
+
     if (GUILayout.Button("Generate Colliders for Selected Prefab")) {
       GameObject selected = Selection.activeGameObject;
       if (selected != null) {
@@ -19,146 +32,231 @@ public class MultiColliderGenerator : EditorWindow {
     }
   }
 
-  // Helper class for grouping triangles
-  class TriangleGroup {
-    public Vector3 averageNormal;
-    public List<Vector3> points = new List<Vector3>();
-    public float totalArea = 0f;
-    public Vector3 centroidSum = Vector3.zero;
-    public int count = 0;
-
-    public Vector3 GetCentroid() {
-      return (count > 0) ? centroidSum / count : Vector3.zero;
-    }
-
-    public void AddTriangle(Vector3[] triPoints, Vector3 normal, float area, Vector3 centroid) {
-      totalArea += area;
-      centroidSum += centroid;
-      count++;
-      // Simple running average for normal
-      averageNormal = ((averageNormal * (count - 1)) + normal).normalized;
-      points.AddRange(triPoints);
-    }
-  }
-
-  static void GenerateColliders(GameObject obj) {
-    MeshFilter mf = obj.GetComponentInChildren<MeshFilter>();
-    if (mf == null) {
-      Debug.LogWarning("No MeshFilter found on " + obj.name);
+  void GenerateColliders(GameObject parent) {
+    MeshFilter mf = parent.GetComponentInChildren<MeshFilter>();
+    if (mf == null || mf.sharedMesh == null) {
+      Debug.LogWarning("No MeshFilter or mesh found on " + parent.name);
       return;
     }
     Mesh mesh = mf.sharedMesh;
-    if (mesh == null) {
-      Debug.LogWarning("MeshFilter has no mesh.");
-      return;
+    // Process the mesh into triangle data and filter by minColliderY.
+    MeshProcessorAdaptive processor = new MeshProcessorAdaptive(mesh, mf.transform, minColliderY);
+    List<TriangleData> triangles = processor.ExtractTriangles();
+    // Cluster the triangle data adaptively using DBSCAN.
+    List<List<TriangleData>> clusters = DBSCAN.Cluster(triangles, eps, minPts);
+    
+    // Convert each cluster into a Patch.
+    List<Patch> patches = new List<Patch>();
+    foreach (var cluster in clusters) {
+      Patch patch = new Patch();
+      foreach (var tri in cluster) {
+        // Add all vertices from this triangle.
+        patch.points.AddRange(tri.vertices);
+        patch.AddNormal(tri.normal);
+      }
+      patch.ComputeLocalBounds();
+      patches.Add(patch);
     }
+    
+    // Optionally, if we have more patches than needed, we can sort by area.
+    patches.Sort((a, b) => b.totalArea.CompareTo(a.totalArea));
+    int finalCount = Mathf.Min(maxColliderCount, patches.Count);
+    
+    // Create container for colliders.
+    GameObject container = new GameObject("GeneratedColliders");
+    container.transform.SetParent(parent.transform, false);
+    ColliderGeneratorAdaptive colliderGen = new ColliderGeneratorAdaptive();
+    for (int i = 0; i < finalCount; i++) {
+      colliderGen.GenerateCollider(patches[i], container.transform, i);
+    }
+    Debug.Log("Generated " + finalCount + " adaptive colliders on " + parent.name);
+  }
+}
 
-    Vector3[] vertices = mesh.vertices;
-    int[] triangles = mesh.triangles;
-    Bounds meshBounds = mesh.bounds;
-    Vector3 meshCenter = meshBounds.center;
+// ----------------------------------------------------------------------
+// Data class for a single triangle.
+public class TriangleData {
+  public Vector3 centroid;
+  public Vector3 normal;
+  public Vector3[] vertices;
+  public TriangleData(Vector3[] vertices) {
+    this.vertices = vertices;
+    centroid = (vertices[0] + vertices[1] + vertices[2]) / 3f;
+    normal = Vector3.Cross(vertices[1] - vertices[0], vertices[2] - vertices[0]).normalized;
+  }
+}
 
-    List<TriangleGroup> groups = new List<TriangleGroup>();
-    float normalThreshold = 0.95f;              // similarity of face normals
-    float distanceThreshold = meshBounds.size.magnitude * 0.1f; // grouping spatially
-
-    // Iterate through all triangles in the mesh
-    for (int i = 0; i < triangles.Length; i += 3) {
-      int i0 = triangles[i];
-      int i1 = triangles[i + 1];
-      int i2 = triangles[i + 2];
-
-      Vector3 v0 = vertices[i0];
-      Vector3 v1 = vertices[i1];
-      Vector3 v2 = vertices[i2];
-
-      Vector3 triNormal = Vector3.Cross(v1 - v0, v2 - v0).normalized;
-      Vector3 triCentroid = (v0 + v1 + v2) / 3f;
-      float area = Vector3.Cross(v1 - v0, v2 - v0).magnitude * 0.5f;
-
-      // Use extrusion (distance from mesh center along the normal) to filter minor faces.
-      float extrusion = Vector3.Dot(triCentroid - meshCenter, triNormal);
-      if (extrusion < distanceThreshold * 0.5f)
+// ----------------------------------------------------------------------
+// Simplified DBSCAN algorithm for TriangleData.
+public static class DBSCAN {
+  public static List<List<TriangleData>> Cluster(List<TriangleData> points, float eps, int minPts) {
+    List<List<TriangleData>> clusters = new List<List<TriangleData>>();
+    Dictionary<TriangleData, bool> visited = new Dictionary<TriangleData, bool>();
+    foreach (TriangleData pt in points) {
+      visited[pt] = false;
+    }
+    foreach (TriangleData pt in points) {
+      if (visited[pt])
         continue;
-
-      bool added = false;
-      // Try to add triangle to an existing group
-      foreach (var group in groups) {
-        if (Vector3.Dot(group.averageNormal, triNormal) > normalThreshold) {
-          Vector3 groupCentroid = group.GetCentroid();
-          if (Vector3.Distance(groupCentroid, triCentroid) < distanceThreshold) {
-            group.AddTriangle(new Vector3[] { v0, v1, v2 }, triNormal, area, triCentroid);
-            added = true;
-            break;
-          }
-        }
+      visited[pt] = true;
+      List<TriangleData> neighbors = RegionQuery(points, pt, eps);
+      if (neighbors.Count < minPts) {
+        // Mark as noise (ignored for now)
+        continue;
       }
-      // No suitable group? Create a new one.
-      if (!added) {
-        TriangleGroup newGroup = new TriangleGroup();
-        newGroup.averageNormal = triNormal;
-        newGroup.AddTriangle(new Vector3[] { v0, v1, v2 }, triNormal, area, triCentroid);
-        groups.Add(newGroup);
-      }
+      List<TriangleData> cluster = new List<TriangleData>();
+      ExpandCluster(points, pt, neighbors, cluster, eps, minPts, visited);
+      clusters.Add(cluster);
     }
-
-    // Sort groups by their total area (largest surfaces first)
-    groups.Sort((a, b) => b.totalArea.CompareTo(a.totalArea));
-    int maxGroups = Mathf.Min(10, groups.Count);
-
-    // Create a thin box collider for each top group.
-    for (int i = 0; i < maxGroups; i++) {
-      CreateColliderForGroup(obj, groups[i], i);
-    }
-
-    Debug.Log("Generated " + maxGroups + " colliders on " + obj.name);
+    return clusters;
   }
 
-  // Creates a thin BoxCollider approximating the group surface.
-  static void CreateColliderForGroup(GameObject parent, TriangleGroup group, int index) {
-    // Use the group's average normal as the Z axis.
-    Vector3 axisZ = group.averageNormal;
-    // Choose an arbitrary vector to generate an X axis.
+  static void ExpandCluster(List<TriangleData> points, TriangleData pt, List<TriangleData> neighbors,
+                              List<TriangleData> cluster, float eps, int minPts, Dictionary<TriangleData, bool> visited) {
+    cluster.Add(pt);
+    for (int i = 0; i < neighbors.Count; i++) {
+      TriangleData n = neighbors[i];
+      if (!visited[n]) {
+        visited[n] = true;
+        List<TriangleData> nNeighbors = RegionQuery(points, n, eps);
+        if (nNeighbors.Count >= minPts) {
+          neighbors.AddRange(nNeighbors);
+        }
+      }
+      if (!IsInCluster(cluster, n))
+        cluster.Add(n);
+    }
+  }
+
+  static bool IsInCluster(List<TriangleData> cluster, TriangleData pt) {
+    return cluster.Contains(pt);
+  }
+
+  static List<TriangleData> RegionQuery(List<TriangleData> points, TriangleData pt, float eps) {
+    List<TriangleData> neighbors = new List<TriangleData>();
+    foreach (TriangleData other in points) {
+      if (Vector3.Distance(pt.centroid, other.centroid) <= eps) {
+        neighbors.Add(other);
+      }
+    }
+    return neighbors;
+  }
+}
+
+// ----------------------------------------------------------------------
+// MeshProcessorAdaptive extracts triangle data from the mesh.
+public class MeshProcessorAdaptive {
+  Mesh mesh;
+  Transform meshTransform;
+  float minColliderY;
+  public MeshProcessorAdaptive(Mesh mesh, Transform transform, float minColliderY) {
+    this.mesh = mesh;
+    this.meshTransform = transform;
+    this.minColliderY = minColliderY;
+  }
+  public List<TriangleData> ExtractTriangles() {
+    List<TriangleData> tris = new List<TriangleData>();
+    Vector3[] vertices = mesh.vertices;
+    int[] indices = mesh.triangles;
+    for (int i = 0; i < indices.Length; i += 3) {
+      Vector3 v0 = meshTransform.TransformPoint(vertices[indices[i]]);
+      Vector3 v1 = meshTransform.TransformPoint(vertices[indices[i + 1]]);
+      Vector3 v2 = meshTransform.TransformPoint(vertices[indices[i + 2]]);
+      Vector3 centroid = (v0 + v1 + v2) / 3f;
+      if (centroid.y < minColliderY)
+        continue;
+      TriangleData tri = new TriangleData(new Vector3[] { v0, v1, v2 });
+      tris.Add(tri);
+    }
+    return tris;
+  }
+}
+
+// ----------------------------------------------------------------------
+// Patch represents a cluster (surface patch) and computes its bounds.
+public class Patch {
+  public List<Vector3> points = new List<Vector3>();
+  public Vector3 averageNormal = Vector3.zero;
+  public Vector3 centroid = Vector3.zero;
+  public int count = 0;
+  public Rect bounds2D;   // in the local plane
+  public float minZ, maxZ; // extents along the local Z axis
+  public float totalArea;
+  public Vector3 axisX, axisY, axisZ;
+
+  // Add a normal from a triangle (we average them)
+  public void AddNormal(Vector3 normal) {
+    if (count == 0)
+      averageNormal = normal;
+    else
+      averageNormal = ((averageNormal * count) + normal) / (count + 1);
+    averageNormal.Normalize();
+    count++;
+  }
+  
+  // Compute the local coordinate system and bounds.
+  public void ComputeLocalBounds() {
+    axisZ = averageNormal;
     Vector3 arbitrary = Vector3.up;
     if (Mathf.Abs(Vector3.Dot(axisZ, arbitrary)) > 0.99f)
       arbitrary = Vector3.right;
-    Vector3 axisX = Vector3.Cross(axisZ, arbitrary).normalized;
-    Vector3 axisY = Vector3.Cross(axisZ, axisX);
-
-    // Project all collected points into this coordinate frame.
+    axisX = Vector3.Cross(axisZ, arbitrary).normalized;
+    axisY = Vector3.Cross(axisZ, axisX);
     float minX = float.MaxValue, maxX = float.MinValue;
     float minY = float.MaxValue, maxY = float.MinValue;
-    float sumZ = 0f;
-    foreach (var pt in group.points) {
-      float x = Vector3.Dot(pt, axisX);
-      float y = Vector3.Dot(pt, axisY);
-      float z = Vector3.Dot(pt, axisZ);
+    minZ = float.MaxValue; maxZ = float.MinValue;
+    foreach (Vector3 p in points) {
+      float x = Vector3.Dot(p, axisX);
+      float y = Vector3.Dot(p, axisY);
+      float z = Vector3.Dot(p, axisZ);
       if (x < minX) minX = x;
       if (x > maxX) maxX = x;
       if (y < minY) minY = y;
       if (y > maxY) maxY = y;
-      sumZ += z;
+      if (z < minZ) minZ = z;
+      if (z > maxZ) maxZ = z;
     }
-    float avgZ = sumZ / group.points.Count;
+    bounds2D = new Rect(minX, minY, maxX - minX, maxY - minY);
+    totalArea = (maxX - minX) * (maxY - minY);
+    // Also compute the overall centroid.
+    Vector3 sum = Vector3.zero;
+    foreach (Vector3 p in points) { sum += p; }
+    centroid = (points.Count > 0) ? sum / points.Count : Vector3.zero;
+  }
+}
 
-    // Compute the center and size of the projected bounding box.
-    float centerX = (minX + maxX) * 0.5f;
-    float centerY = (minY + maxY) * 0.5f;
-    Vector3 localCenter = (axisX * centerX) + (axisY * centerY) + (axisZ * avgZ);
-    Vector3 size = new Vector3(maxX - minX, maxY - minY, 0.1f); // set thickness to a small value
-
-    // Create a child GameObject for the collider.
-    GameObject colliderObj = new GameObject("ColliderGroup_" + index);
-    colliderObj.transform.parent = parent.transform;
-    colliderObj.transform.localPosition = localCenter;
-    // Align the collider to the computed axes.
-    colliderObj.transform.localRotation = Quaternion.LookRotation(axisZ, axisY);
-
+// ----------------------------------------------------------------------
+// ColliderGeneratorAdaptive creates BoxColliders from patches.
+public class ColliderGeneratorAdaptive {
+  private const float thinMultiplier = 0.8f;
+  private const float bottomPadding = 0.1f;
+  
+  public void GenerateCollider(Patch patch, Transform parent, int index) {
+    // The top of the surface is at patch.maxZ.
+    float topSide = patch.maxZ;
+    float bottomSide = patch.minZ - bottomPadding;
+    float computedThickness = topSide - bottomSide;
+    float finalThickness = computedThickness * thinMultiplier;
+    // Set local Z center so that (localCenter.z + finalThickness/2) == topSide.
+    float localCenterZ = topSide - finalThickness * 0.5f;
+    float width = patch.bounds2D.width;
+    float height = patch.bounds2D.height;
+    float centerX = patch.bounds2D.x + width * 0.5f;
+    float centerY = patch.bounds2D.y + height * 0.5f;
+    Vector3 localCenter = new Vector3(centerX, centerY, localCenterZ);
+    // Convert local center to world space.
+    Vector3 globalCenter = patch.axisX * localCenter.x + patch.axisY * localCenter.y + patch.axisZ * localCenter.z;
+    
+    GameObject colliderObj = new GameObject("ColliderPatch_" + index);
+    colliderObj.transform.position = globalCenter;
+    colliderObj.transform.rotation = Quaternion.LookRotation(patch.axisZ, patch.axisY);
+    colliderObj.transform.SetParent(parent, true);
+    
     BoxCollider box = colliderObj.AddComponent<BoxCollider>();
-    box.center = Vector3.zero;
-    box.size = size;
-
-    // Set collider to layer 10.
-    colliderObj.layer = 10;
+    box.size = new Vector3(width, height, finalThickness);
+    // Shift the box's local center so its top face is flush with the mesh surface.
+    box.center = new Vector3(0, 0, -finalThickness * 0.5f);
+    
+    colliderObj.layer = 7; // Assign to layer "Terrain" (index 7)
   }
 }
