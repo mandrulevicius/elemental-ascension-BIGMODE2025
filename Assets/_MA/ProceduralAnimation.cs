@@ -195,8 +195,6 @@ public class ProceduralAnimation : MonoBehaviour
     void HuntPlayer()
     {
         var distanceToPlayer = Vector3.Distance(_pray.transform.position, transform.position);
-        Debug.Log(distanceToPlayer);
-        Debug.Log(_pray.gameObject.tag);
         if (distanceToPlayer > range) _pray = null;
         if (!_pray) return;
         _movementDirection = (_pray.transform.position - transform.position).normalized;

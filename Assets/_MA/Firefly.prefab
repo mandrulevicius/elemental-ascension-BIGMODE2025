@@ -129,7 +129,7 @@ MonoBehaviour:
   _enemies:
     serializedVersion: 2
     m_Bits: 1024
-  range: 5
+  range: 50
   speed: 50
   damage: 1
   ticksUntilFullyGrown: 100

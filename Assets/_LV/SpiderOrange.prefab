@@ -2393,9 +2393,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef943f704059ceb4cbf2265c56a54505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preyLayer:
-    serializedVersion: 2
-    m_Bits: 256
   body: {fileID: 3125036981555685570}
   thighHips:
   - {fileID: 1710317175007148215}
@@ -2411,7 +2408,10 @@ MonoBehaviour:
   - {fileID: 377630049069353828}
   - {fileID: 3437954230816310789}
   maxLegReach: 4
-  layersToHit:
+  preyLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  whatIsGroud:
     serializedVersion: 2
     m_Bits: 128
   distanceToSnap: 1
@@ -2428,7 +2428,7 @@ MonoBehaviour:
   windDownTime: 25
   cooldown: 25
   speed: 3
-  range: 5
+  range: 50
   legMovespeed: 60
   legLiftSpeed: 0.02
   isCooldowning: 0
