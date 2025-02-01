@@ -6550,6 +6550,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8568585512919104522, guid: 8d6680ecd5994c8419f824bda85bf8ec, type: 3}
+      propertyPath: deathEffectParticles
+      value: 
+      objectReference: {fileID: 3543108578963575561, guid: 594be387b87d8974788d937ca23701c4, type: 3}
     - target: {fileID: 719644232481453341, guid: 8d6680ecd5994c8419f824bda85bf8ec, type: 3}
       propertyPath: m_LocalPosition.x
       value: 29.0432
@@ -6596,7 +6600,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5632521191423712832, guid: 8d6680ecd5994c8419f824bda85bf8ec, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
