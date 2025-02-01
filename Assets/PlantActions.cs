@@ -39,6 +39,7 @@ public class PlantActions : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        
         float randomRadius = Random.Range(0.1f, castRange);
         Vector3 randomDirection = Random.insideUnitSphere.normalized;
              spawnPosition =
