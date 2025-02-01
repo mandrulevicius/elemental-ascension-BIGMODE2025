@@ -196,6 +196,7 @@ public class ProceduralAnimation : MonoBehaviour
             if (Physics.Raycast(_frontRay, out _hit, maxLegReach, preyLayer))
             {
                 // transform.LookAt(new Vector3(_hit.point.x, _hit.point.y + 1, _hit.point.z)); // delta time here
+                if(_snapPositions.Count>0)
                 if (Vector3.Distance(_snapPositions[0], _hit.point) < Vector3.Distance(_snapPositions[1], _hit.point))
                 {
                     _snapPositions[0] = _hit.point;
