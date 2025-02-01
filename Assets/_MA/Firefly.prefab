@@ -185,6 +185,9 @@ MonoBehaviour:
   reset: 0
   attackingLeg: 0
   dieTime: 240
+  wanderSpeed: 0.1
+  minDuration: 10
+  maxDuration: 20
 --- !u!54 &4793961853278373480
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -272,7 +275,7 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 0.78431374, g: 1, b: 0, a: 1}
-  m_Intensity: 2
+  m_Intensity: 0.1
   m_Range: 5
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

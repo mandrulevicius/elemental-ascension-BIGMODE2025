@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 public class ProceduralAnimation : MonoBehaviour
 {
@@ -59,6 +62,14 @@ public class ProceduralAnimation : MonoBehaviour
     private EntityStats stats;
     private float _deathTick;
     [SerializeField] private float dieTime = 240;
+
+    Vector3 _wanderDirection;
+    bool _isWandering;
+    int _wanderTick;
+    int _wanderDurationTicks;
+    [SerializeField] float wanderSpeed = 1f;
+    [SerializeField] int minDuration = 1;
+    [SerializeField] int maxDuration = 3;
 
     void Start()
     {
@@ -127,6 +138,10 @@ public class ProceduralAnimation : MonoBehaviour
         if (_pray)
         {
             HuntPlayer();
+        }
+        else
+        {
+            Wander();   
         }
 
         // stay above ground
@@ -225,6 +240,23 @@ public class ProceduralAnimation : MonoBehaviour
                 // isAttacking = true;
             }
         }
+    }
+
+    void Wander()
+    {
+        _wanderTick += 1;
+        if (_wanderTick >= _wanderDurationTicks)
+        {
+            _wanderTick = 0;
+            _wanderDurationTicks = Random.Range(minDuration, maxDuration);
+            _wanderDirection = (Random.onUnitSphere + _frontRay.direction + Vector3.up).normalized; // Vector3.forward + 
+            // _wanderDirection = (new Vector3(
+                // Random.Range(-1, 1), 
+                // Random.Range(-1, 1), 
+                // Random.Range(-1, 1))).normalized;
+        }
+        transform.position += _wanderDirection * (wanderSpeed * Time.fixedDeltaTime);
+        transform.LookAt(new Vector3(_wanderDirection.x, transform.position.y, _wanderDirection.z));
     }
 
     void ProcessLeg(int i)

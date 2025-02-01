@@ -2438,6 +2438,9 @@ MonoBehaviour:
   reset: 0
   attackingLeg: 0
   dieTime: 240
+  wanderSpeed: 1
+  minDuration: 150
+  maxDuration: 500
 --- !u!54 &5984760254617971518
 Rigidbody:
   m_ObjectHideFlags: 0
