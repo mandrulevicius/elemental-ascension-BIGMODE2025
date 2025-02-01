@@ -33,7 +33,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.789, y: 1, z: 0.465}
-  m_LocalScale: {x: 0.099999994, y: 0.099999994, z: 0.099999994}
+  m_LocalScale: {x: 0.10000001, y: 0.10000001, z: 0.10000001}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 78310187070081524}
@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemies:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   range: 5
   speed: 50
   damage: 1
@@ -137,7 +137,7 @@ MonoBehaviour:
   fullyGrown: 0
   friends:
     serializedVersion: 2
-    m_Bits: 2560
+    m_Bits: 2561
 --- !u!114 &146035637275887224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,17 +150,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef943f704059ceb4cbf2265c56a54505, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  preyLayer:
-    serializedVersion: 2
-    m_Bits: 1024
   body: {fileID: 6015679753469681531}
   thighHips: []
   legTargets: []
   windUpTargets: []
   maxLegReach: 2
-  layersToHit:
+  preyLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
+  whatIsGroud:
+    serializedVersion: 2
+    m_Bits: 128
   distanceToSnap: 1
   legTargetVariation: 0.1
   legStartOffsets:
@@ -175,7 +175,7 @@ MonoBehaviour:
   windDownTime: 15
   cooldown: 60
   speed: 30
-  range: 5
+  range: 10
   legMovespeed: 60
   legLiftSpeed: 0.02
   isCooldowning: 0
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 78310187070081524}
   - component: {fileID: 4771765917605088998}
   - component: {fileID: 5096347713297316084}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,15 +507,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6013125811604741323, guid: 0ba79b6f4dc828849b9256d4ffb9e074, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: 0
+      value: 2.1e-44
       objectReference: {fileID: 0}
     - target: {fileID: 6013125811604741323, guid: 0ba79b6f4dc828849b9256d4ffb9e074, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0
+      value: 2.2e-44
+      objectReference: {fileID: 0}
+    - target: {fileID: 6013125811604741323, guid: 0ba79b6f4dc828849b9256d4ffb9e074, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 2.4e-44
       objectReference: {fileID: 0}
     - target: {fileID: 8201478027261178950, guid: 0ba79b6f4dc828849b9256d4ffb9e074, type: 3}
       propertyPath: m_Name
       value: FirefliesStaffParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 8201478027261178950, guid: 0ba79b6f4dc828849b9256d4ffb9e074, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8920431201452510995, guid: 0ba79b6f4dc828849b9256d4ffb9e074, type: 3}
       propertyPath: m_LocalScale.x

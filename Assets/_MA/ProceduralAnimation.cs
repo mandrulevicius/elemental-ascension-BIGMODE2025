@@ -5,7 +5,6 @@ using UnityEngine.Serialization;
 
 public class ProceduralAnimation : MonoBehaviour
 {
-    [SerializeField] LayerMask preyLayer;
     GameObject _pray;
 
     [SerializeField] GameObject body;
@@ -28,7 +27,10 @@ public class ProceduralAnimation : MonoBehaviour
     [FormerlySerializedAs("maxRayDistance")] [SerializeField]
     float maxLegReach = 2;
 
-    [SerializeField] LayerMask layersToHit;
+    [SerializeField] LayerMask preyLayer;
+
+    [FormerlySerializedAs("layersToHit")] [SerializeField]
+    LayerMask whatIsGroud;
 
     Vector3 _movementDirection = Vector3.zero;
 
@@ -61,8 +63,8 @@ public class ProceduralAnimation : MonoBehaviour
     void Start()
     {
         stats = GetComponent<EntityStats>();
-        _pray = GameObject.FindObjectsByType<GameObject>(FindObjectsInactive.Exclude, FindObjectsSortMode.None)
-            .FirstOrDefault(obj => ((1 << obj.layer) & preyLayer) != 0);
+        // _pray = GameObject.FindObjectsByType<GameObject>(FindObjectsInactive.Exclude, FindObjectsSortMode.None)
+            // .FirstOrDefault(obj => ((1 << obj.layer) & preyLayer) != 0);
 
         _groundRay = new Ray(body.transform.position, Vector3.down);
         _frontRay = new Ray(body.transform.position, Vector3.forward);
@@ -104,38 +106,46 @@ public class ProceduralAnimation : MonoBehaviour
         {
             ProcessLeg(i);
         }
-        
+
         if (!_pray && movementTick % 20 == 0)
         {
             other = Physics.OverlapSphere(transform.position, range, preyLayer);
-            for (int i = 0; i < other.Length; i++)
-            {
-                if (other[i].gameObject.GetComponent<EntityStats>().dead)
+
+            if (other.Length > 0)
+                for (int i = 0; i < other.Length; i++)
                 {
-                    continue;
+                    if (other[i].transform.root.gameObject.GetComponent<EntityStats>().dead)
+                    {
+                        continue;
+                    }
+
+                    _pray = other[i].gameObject;
+                    break;
                 }
-                _pray = other[i].gameObject;
-                break;
-            }
         }
 
-        
-        HuntPlayer();
+        if (_pray)
+        {
+            HuntPlayer();
+        }
 
         // stay above ground
         _groundRay.origin = body.transform.position;
-
-
+    
         _groundRay.direction = new Vector3(0, 0, 0);
-        if (Physics.Raycast(_groundRay, out _hit, maxLegReach, layersToHit))
+        if (Physics.Raycast(_groundRay, out _hit, maxLegReach, whatIsGroud))
         {
             transform.position = _hit.point;
         }
 
         _frontRay.origin = body.transform.position;
         _frontRay.direction = _movementDirection;
-        if (Physics.Raycast(_frontRay, out _hit, maxLegReach, layersToHit))
-        {
+        if (Physics.Raycast(_frontRay, out _hit, maxLegReach, whatIsGroud))
+        {   
+            if(Vector3.Distance(transform.position, _hit.point) < 0.1 && legTargets.Count < 1);
+            {
+                stats.Health -= 1;
+            }
             // transform.LookAt(new Vector3(_hit.point.x, _hit.point.y + 1, _hit.point.z)); // delta time here
         }
         // look at front leg snap positions?
@@ -184,19 +194,21 @@ public class ProceduralAnimation : MonoBehaviour
 
     void HuntPlayer()
     {
+        var distanceToPlayer = Vector3.Distance(_pray.transform.position, transform.position);
+        Debug.Log(distanceToPlayer);
+        Debug.Log(_pray.gameObject.tag);
+        if (distanceToPlayer > range) _pray = null;
         if (!_pray) return;
         _movementDirection = (_pray.transform.position - transform.position).normalized;
         transform.position += _movementDirection * (speed * Time.fixedDeltaTime);
 
-        var distanceToPlayer = Vector3.Distance(_pray.transform.position, transform.position);
         if (distanceToPlayer > maxLegReach)
             transform.LookAt(new Vector3(_pray.transform.position.x, transform.position.y, _pray.transform.position.z));
-        if (distanceToPlayer <= maxLegReach)
+        if (distanceToPlayer <= maxLegReach && _snapPositions.Count > 0)
         {
             if (Physics.Raycast(_frontRay, out _hit, maxLegReach, preyLayer))
             {
                 // transform.LookAt(new Vector3(_hit.point.x, _hit.point.y + 1, _hit.point.z)); // delta time here
-                if(_snapPositions.Count>0)
                 if (Vector3.Distance(_snapPositions[0], _hit.point) < Vector3.Distance(_snapPositions[1], _hit.point))
                 {
                     _snapPositions[0] = _hit.point;
@@ -231,13 +243,13 @@ public class ProceduralAnimation : MonoBehaviour
         _rays[i] = _tempRay;
 
         Debug.DrawRay(_rays[i].origin, _rayDirections[i], Color.red);
-        if (!Physics.Raycast(_rays[i], out _hit, maxLegReach, layersToHit))
+        if (!Physics.Raycast(_rays[i], out _hit, maxLegReach, whatIsGroud))
         {
             // if raycast miss, try closer to center
             if (!Physics.Raycast(_rays[i].origin, (_rayDirections[i] + Vector3.down).normalized, out _hit, maxLegReach,
-                    layersToHit))
+                    whatIsGroud))
             {
-                if (!Physics.Raycast(_rays[i].origin, Vector3.down, out _hit, maxLegReach, layersToHit)) return;
+                if (!Physics.Raycast(_rays[i].origin, Vector3.down, out _hit, maxLegReach, whatIsGroud)) return;
             }
         }
 

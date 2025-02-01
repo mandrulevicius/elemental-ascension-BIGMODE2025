@@ -228,6 +228,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpiderOrange (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5632521191423712832, guid: 8d6680ecd5994c8419f824bda85bf8ec, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -268,6 +272,10 @@ PrefabInstance:
     - target: {fileID: 6015679753469681531, guid: 8352047030b4dae4c855eb0b105551d6, type: 3}
       propertyPath: m_Name
       value: Firefly
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015679753469681531, guid: 8352047030b4dae4c855eb0b105551d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9096426771436151435, guid: 8352047030b4dae4c855eb0b105551d6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -329,7 +337,7 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8338988566280778637, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
   m_PrefabInstance: {fileID: 4128880125939539428}
   m_PrefabAsset: {fileID: 0}
---- !u!1001 &1586149811
+--- !u!1001 &1928307307
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -339,15 +347,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 719644232481453341, guid: 8d6680ecd5994c8419f824bda85bf8ec, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -18.67194
+      value: -8.948901
       objectReference: {fileID: 0}
     - target: {fileID: 719644232481453341, guid: 8d6680ecd5994c8419f824bda85bf8ec, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.3729162
+      value: -0.0000009536743
       objectReference: {fileID: 0}
     - target: {fileID: 719644232481453341, guid: 8d6680ecd5994c8419f824bda85bf8ec, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 189.13121
+      value: 154.55019
       objectReference: {fileID: 0}
     - target: {fileID: 719644232481453341, guid: 8d6680ecd5994c8419f824bda85bf8ec, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1019,5 +1027,5 @@ SceneRoots:
   - {fileID: 7224600585917651588}
   - {fileID: 2741446652701478276}
   - {fileID: 455182658}
-  - {fileID: 1586149811}
   - {fileID: 411649801}
+  - {fileID: 1928307307}

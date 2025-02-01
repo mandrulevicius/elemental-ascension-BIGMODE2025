@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlantActions : MonoBehaviour
 {
     [SerializeField] private GameObject particle;
-    private int _particleLayer;
+    [SerializeField] private LayerMask _particleLayer;
     private int _playerLayer;
 
     private float _tick;
@@ -17,40 +17,47 @@ public class PlantActions : MonoBehaviour
     private Vector3 _hit;
     private Vector3 _projectile;
     private GameObject _lastSpawn;
-    
+
     private Vector3 _fullyGrownScale;
     [SerializeField] int ticksUntilFullyGrown = 120;
     [SerializeField] bool fullyGrown;
+    [SerializeField] private int particleCapacity=2;
+    [SerializeField] private GameObject spwanPlace;
+     private Vector3 spawnPosition;
+     private Vector3 startScale;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
+     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        startScale = transform.localScale;
         _fullyGrownScale = transform.localScale;
         transform.localScale = Vector3.zero;
-        _particleLayer = LayerMask.GetMask("Particles");
         _playerLayer = LayerMask.GetMask("Player");
-        float randomRadius = Random.Range(0.2f, castRange);
-        Vector3 randomDirection = Random.insideUnitSphere.normalized;
-        Vector3 spawnPosition = transform.position + Vector3.up * 2 + randomDirection * randomRadius; // Offset by radius
-        _lastSpawn = Instantiate(particle, spawnPosition, Quaternion.identity);
+        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Collider[] particles = Physics.OverlapSphere(transform.position, castRange, _particleLayer);
+        float randomRadius = Random.Range(0.1f, castRange);
+        Vector3 randomDirection = Random.insideUnitSphere.normalized;
+             spawnPosition =
+                spwanPlace.transform.position  + randomDirection * randomRadius;
+     
+        
+        Collider[] particles = Physics.OverlapSphere(  spwanPlace.transform.position, castRange*2, _particleLayer);
 
         _tick += 1;
+        if(fullyGrown)
         _spawnTick += 1;
         // spwan
         if (_spawnTick >= spawnTime)
         {
-            if (particles.Length < 10)
+            if (particles.Length < particleCapacity)
             {
-                float randomRadius = Random.Range(1f, castRange);
-                Vector3 randomDirection = Random.insideUnitSphere.normalized;
-                Vector3 spawnPosition = transform.position + Vector3.up * 2  + randomDirection * randomRadius; // Offset by radius
                 _lastSpawn = Instantiate(particle, spawnPosition, Quaternion.identity);
+                var coef = startScale.x / _lastSpawn.transform.localScale.x;
+                _lastSpawn.transform.localScale =  transform.localScale / coef;
             }
 
             _spawnTick = 0;
@@ -100,10 +107,11 @@ public class PlantActions : MonoBehaviour
             {
                 fullyGrown = true;
             }
+
             transform.localScale += _fullyGrownScale / ticksUntilFullyGrown;
-        };
-        
-        
+        }
+
+        ;
     }
 
     void LateUpdate()
