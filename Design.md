@@ -218,11 +218,6 @@ After hitting legs go back to default
 If not reaching ground, target self or ground/prey where will land.
 
 
-
-!!! To fix rotation, need different starting positions for raycasts, not from center!!!
-
-ALSO LOCAL VS GLOBAL POSITIONS
-
 Need to see where raycasts hit - either upgrade debugdrawray or drawline.
 
 Need to see where target is.
