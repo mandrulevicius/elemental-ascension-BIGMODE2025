@@ -2502,7 +2502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplicativeModifier: 1
-  deathEffectParticles: {fileID: 0}
+  deathEffectParticles: {fileID: 3543108578963575561, guid: 83f82c8c9f73f51439f516f56875c218, type: 3}
   baseHealth: 10
   maxHealth: 10
   health: 10
