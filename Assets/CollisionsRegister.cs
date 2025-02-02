@@ -26,7 +26,7 @@ public class CollisionsRegister : MonoBehaviour
             Destroy(glowBall, 0.5f);
         }
         
-        playerStats.Health -=1;
+        playerStats.Health -= gameObject.GetComponent<EntityStats>().damage;
     }
 
  

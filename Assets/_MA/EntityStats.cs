@@ -72,7 +72,12 @@ public class EntityStats : MonoBehaviour
                 OnDestruction?.Invoke();
                 if(deathEffectParticles)
                     Instantiate(deathEffectParticles, transform.position, Quaternion.identity);
-                if (dropPrefab) Instantiate(dropPrefab, transform.position + Vector3.up, Quaternion.identity);
+                if (dropPrefab)
+                {
+                    var drop = Instantiate(dropPrefab, transform.position + Vector3.up, Quaternion.identity);
+                    drop.transform.localScale = drop.transform.localScale * (float)Math.Sqrt(multiplicativeModifier);
+                    drop.GetComponent<EntityStats>().MultiplicativeModifier = MultiplicativeModifier / 100;
+                }
                 Destroy(gameObject, 0f);
                 // Destroy(selfPrefab, 0f);
             }
@@ -94,6 +99,8 @@ public class EntityStats : MonoBehaviour
         }
     }
     public event Action<float> OnMovespeedChanged;
+
+    public int damage = 1;
     
     [SerializeField] private GameObject dropPrefab;
 
@@ -122,8 +129,12 @@ public class EntityStats : MonoBehaviour
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Pickup"))
             {
-                pickupsGathered += 1;
-                MultiplicativeModifier += other.gameObject.GetComponent<EntityStats>().multiplicativeModifier;
+                var pickupStats = other.gameObject.GetComponent<EntityStats>();
+                if (pickupStats)
+                {
+                    pickupsGathered += (int)pickupStats.MultiplicativeModifier;
+                    MultiplicativeModifier += pickupStats.multiplicativeModifier;
+                }
                 Health += 1;
             }
         }
