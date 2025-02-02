@@ -121,6 +121,7 @@ public class EntityStats : MonoBehaviour
             if (other.gameObject.layer == LayerMask.NameToLayer("Pickup"))
             {
                 MultiplicativeModifier += other.gameObject.GetComponent<EntityStats>().multiplicativeModifier;
+                Health += 1;
             }
         }
 
