@@ -21,6 +21,8 @@ public class EntityStats : MonoBehaviour
             Movespeed = baseMovespeed * multiplicativeModifier;
             if (Mathf.Approximately(Movespeed, lastMovespeed)) return;
             
+            damage = baseDamage * multiplicativeModifier;
+            
             // transform.localScale = _baseScale * multiplicativeModifier;
             
             OnMultiplicativeModifierChanged?.Invoke(multiplicativeModifier);
@@ -100,7 +102,8 @@ public class EntityStats : MonoBehaviour
     }
     public event Action<float> OnMovespeedChanged;
 
-    public int damage = 1;
+    public float baseDamage = 1;
+    public float damage = 1;
     
     [SerializeField] private GameObject dropPrefab;
 
