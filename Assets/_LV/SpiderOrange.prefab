@@ -2502,13 +2502,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   multiplicativeModifier: 1
-  deathEffectParticles: {fileID: 0}
+  deathEffectParticles: {fileID: 3543108578963575561, guid: 83f82c8c9f73f51439f516f56875c218, type: 3}
   baseHealth: 10
   maxHealth: 10
   health: 10
   dead: 0
   baseMovespeed: 1
   movespeed: 1
+  dropPrefab: {fileID: 3313173769173966745, guid: 07383fddbc790cc4e84f7240159e076f, type: 3}
 --- !u!1 &5763945937693324166
 GameObject:
   m_ObjectHideFlags: 0
