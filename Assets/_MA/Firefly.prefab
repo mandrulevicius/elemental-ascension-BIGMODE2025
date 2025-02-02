@@ -132,6 +132,7 @@ MonoBehaviour:
   range: 50
   speed: 50
   damage: 1
+  lifetimeTicks: 500
   ticksUntilFullyGrown: 100
   growthVibration: 0.005
   fullyGrown: 0
@@ -227,10 +228,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9f1e4eebb781c4439a58a94a7a07cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  multiplicativeModifier: 1
   deathEffectParticles: {fileID: 3543108578963575561, guid: 594be387b87d8974788d937ca23701c4, type: 3}
+  baseHealth: 1
   maxHealth: 1
   health: 1
   dead: 0
+  baseMovespeed: 1
+  movespeed: 1
 --- !u!1 &8524977248042745655
 GameObject:
   m_ObjectHideFlags: 0
