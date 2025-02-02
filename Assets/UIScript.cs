@@ -52,7 +52,7 @@ public class UIScript : MonoBehaviour
         // Debug output
         foreach (var pair in plantCounts)
         {
-            plantText = pair.Key + ": " + pair.Value.ToString()+"\n";
+            plantText += pair.Key + ": " + pair.Value.ToString()+"\n";
         }
 
         PlantPoolText.text = plantText;

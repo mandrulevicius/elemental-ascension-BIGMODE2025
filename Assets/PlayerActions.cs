@@ -48,7 +48,6 @@ public class PlayerActions : MonoBehaviour
                             out _hit, castRange, layersToHit))
                     {
                         GetPlant(_hit.point, Quaternion.identity);
-                        OnPlantsChanged?.Invoke(plantPool);
                     }
             }
         }
@@ -96,11 +95,14 @@ public class PlayerActions : MonoBehaviour
         {
             GameObject plant = plantPool[0];
             plantPool.RemoveAt(0);
-            plant.SetActive(true); // Reactivate the plant
-            plant.GetComponent<PlantActions>().Reset();
             plant.transform.position = position;
             plant.transform.rotation = rotation;
+            plant.SetActive(true); // Reactivate the plant
+            plant.GetComponent<PlantActions>().Reset();
+            plant.GetComponent<PlantActions>().spawned = true;
+            OnPlantsChanged?.Invoke(plantPool);
             return plant;
+
         }
 
         // No available plants, instantiate a new one

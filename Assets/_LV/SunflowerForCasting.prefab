@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1941614614494175261}
   - component: {fileID: 5025429122026605876}
   m_Layer: 9
-  m_Name: PoppyForCasting
+  m_Name: SunflowerForCasting
   m_TagString: Poppy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.747169, y: 2.7365713, z: 172.89108}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8400160499752597899}
@@ -93,7 +93,6 @@ MonoBehaviour:
   particleCapacity: 2
   spwanPlace: {fileID: 5477154952182147363}
   prefab: {fileID: 1299261345072966613}
-  spawned: 0
 --- !u!136 &5025429122026605876
 CapsuleCollider:
   m_ObjectHideFlags: 0
