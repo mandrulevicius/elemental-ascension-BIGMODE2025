@@ -22,7 +22,7 @@ public class EntityStats : MonoBehaviour
             Movespeed = baseMovespeed * multiplicativeModifier;
             if (Mathf.Approximately(Movespeed, lastMovespeed)) return;
             
-            transform.localScale = _baseScale * multiplicativeModifier;
+            // transform.localScale = _baseScale * multiplicativeModifier;
             
             OnMultiplicativeModifierChanged?.Invoke(multiplicativeModifier);
         }
