@@ -1,30 +1,64 @@
+// 002 change Fix health recalculation in MaxHealth setter ChatGPT v5.0
+
 using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class EntityStats : MonoBehaviour
 {
+    // >>> The One Modifier
+    // there should be multiple defaults for The Slider
+    [SerializeField] float multiplicativeModifier = 1f;
+    public float MultiplicativeModifier
+    {
+        get => multiplicativeModifier;
+        set
+        {
+            multiplicativeModifier = value;
+            float lastMaxHealth = MaxHealth;
+            MaxHealth = baseHealth * multiplicativeModifier;
+            if (Mathf.Approximately(Health, lastMaxHealth)) return;
+            
+            float lastMovespeed = Movespeed;
+            Movespeed = baseMovespeed * multiplicativeModifier;
+            if (Mathf.Approximately(Movespeed, lastMovespeed)) return;
+            
+            transform.localScale = _baseScale * multiplicativeModifier;
+            
+            OnMultiplicativeModifierChanged?.Invoke(multiplicativeModifier);
+        }
+    }
+    public event Action<float> OnMultiplicativeModifierChanged;
+    // <<< The One Modifier
+    
+    private Vector3 _baseScale = new (1f, 1f, 1f);
+    
     [SerializeField] ParticleSystem deathEffectParticles;
     public event Action<float> OnMaxHealthChanged;
-    [SerializeField] private float maxHealth;
+    [SerializeField] private float baseHealth = 100f;
+    [SerializeField] private float maxHealth = 100f;
     public float MaxHealth
     {
         get => maxHealth;
         set
         {
+            //>>> 002 change: Fix health recalculation in MaxHealth setter - ChatGPT v5.0
+            float previousMaxHealth = maxHealth;
             maxHealth = value;
-
-            if (Health > maxHealth)
+            if (Mathf.Approximately(Health, previousMaxHealth))
             {
-                Health = MaxHealth;
+                Health = maxHealth;
             }
-
+            else if (previousMaxHealth > 0f)
+            {
+                Health = Health / previousMaxHealth * maxHealth;
+            }
+            //<<<
             OnMaxHealthChanged?.Invoke(maxHealth);
         }
     }
 
     public event Action<float> OnHealthChanged;
-    [SerializeField] private float health;
+    [SerializeField] private float health = 100f;
     public float Health
     {
         get => health;
@@ -48,6 +82,19 @@ public class EntityStats : MonoBehaviour
     [SerializeField] public bool dead;
     public event Action OnDeath;
     public event Action OnDestruction;
+
+    [SerializeField] float baseMovespeed = 1f;
+    [SerializeField] float movespeed = 1f;
+    public float Movespeed
+    {
+        get => movespeed;
+        set
+        {
+            movespeed = value;
+            OnMovespeedChanged?.Invoke(movespeed);
+        }
+    }
+    public event Action<float> OnMovespeedChanged;
     
     
     // [SerializeField] public multiplicativeModifier; // one slider to rule them all, affecting all relevant stats
@@ -63,9 +110,20 @@ public class EntityStats : MonoBehaviour
     
     // but first, just drop a pickup that increases the stat, and have it fly at player from anywhere or closest plants from their range.
     
+    //CAMERA - playerFollowCamera Lens FOV. Vertical should increase when moving fast.
+    // camera distance and side should change based on The One Slider.
+    
+
+    
+    
+
     void Start()
     {
-
+        _baseScale = transform.localScale;
+        
+        var lastMultiplicativeModifier = MultiplicativeModifier;
+        MultiplicativeModifier = 1f;
+        MultiplicativeModifier = lastMultiplicativeModifier;
     }
 
     // Update is called once per frame
