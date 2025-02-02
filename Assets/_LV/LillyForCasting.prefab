@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3764a1ec84bf05945ae1920de7cf71f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  particle: {fileID: 6015679753469681531, guid: 8352047030b4dae4c855eb0b105551d6, type: 3}
+  particle: {fileID: 6015679753469681531, guid: 9666608e95213fd40bdea1651ee8750a, type: 3}
   _particleLayer:
     serializedVersion: 2
     m_Bits: 2048
