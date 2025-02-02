@@ -281,7 +281,7 @@ character controller
 ## Log
 Saturday 17:00, we fixed last critical issue with logic, have most prefabs, can focus on building levels.
 Have some terrains to place stuff in, just need to place more stuff, then remove some.
-Kind of want to have a brush for plac
+Want to have a brush for placing prefabs
 
 
 
