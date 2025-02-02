@@ -96,6 +96,8 @@ public class EntityStats : MonoBehaviour
     public event Action<float> OnMovespeedChanged;
     
     [SerializeField] private GameObject dropPrefab;
+
+    public int pickupsGathered = 0;
     
     // [SerializeField] public multiplicativeModifier; // one slider to rule them all, affecting all relevant stats
     // additiveModifier
@@ -120,6 +122,7 @@ public class EntityStats : MonoBehaviour
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Pickup"))
             {
+                pickupsGathered += 1;
                 MultiplicativeModifier += other.gameObject.GetComponent<EntityStats>().multiplicativeModifier;
                 Health += 1;
             }
