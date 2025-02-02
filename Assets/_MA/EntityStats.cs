@@ -118,7 +118,7 @@ public class EntityStats : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log($"{gameObject.name} registered trigger: {other.gameObject.name} ");
+        // Debug.Log($"{gameObject.name} registered trigger: {other.gameObject.name} ");
     }
 
 
