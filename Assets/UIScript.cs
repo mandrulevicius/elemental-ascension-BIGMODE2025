@@ -12,6 +12,7 @@ public class UIScript : MonoBehaviour
     private PlayerActions playerActions;
     [SerializeField] EntityStats stats;
 
+    [SerializeField] private GameObject audioManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
