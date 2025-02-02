@@ -5,7 +5,6 @@ using Random = UnityEngine.Random;
 
 public class ParticleActions : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     [SerializeField] private LayerMask _enemies;
     [SerializeField] public float range= 5f;
     [SerializeField] public float speed= 5f;
@@ -37,16 +36,18 @@ public class ParticleActions : MonoBehaviour
     }
         
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-
         EntityStats stats = other.gameObject.GetComponent<EntityStats>();
-        if (stats != null)
+        if (stats)
         {
             stats.Health -= damage;
+        } else
+        {
+            stats = other.gameObject.GetComponentInParent<EntityStats>();
+            if (stats) stats.Health -= damage;
         }
         entityStats.Health -= damage;
-        // should also explode when hits anything other than itself?
     }
 
     void FixedUpdate()
