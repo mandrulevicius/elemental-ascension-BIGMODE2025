@@ -123,9 +123,11 @@ public class PlantActions : MonoBehaviour
 
     public void Reset()
     {
+     
         _growthTick = 0;
         fullyGrown = false;
         transform.localScale = Vector3.zero;
+       
     }
 
     void OnDrawGizmos()

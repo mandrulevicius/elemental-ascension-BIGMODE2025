@@ -37,7 +37,7 @@ public class UIScript : MonoBehaviour
 
         foreach (var plant in plantPool)
         {
-            string plantName = plant.name; // Get plant name
+            string plantName = plant.tag; // Get plant name
             if (plantCounts.ContainsKey(plantName))
             {
                 plantCounts[plantName]++; // Increase count if exists

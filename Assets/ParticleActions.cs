@@ -47,7 +47,8 @@ public class ParticleActions : MonoBehaviour
             stats = other.gameObject.GetComponentInParent<EntityStats>();
             if (stats) stats.Health -= damage;
         }
-        entityStats.Health -= damage;
+        if(entityStats)
+            entityStats.Health -= damage;
     }
 
     void FixedUpdate()

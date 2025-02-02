@@ -16,12 +16,12 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private GameObject plant;
     [SerializeField] private GameObject CinemachineCamera;
     private RaycastHit _hit;
-    [SerializeField] private float castRange = 10f;
+    [SerializeField] private float castRange = 2f;
     [SerializeField] private LayerMask layersToHit;
     [SerializeField] private LayerMask whatIsPlant;
     public List<GameObject> plantPool = new List<GameObject>();
     [SerializeField] private GameObject plantPrefab;
-    public event Action<List <GameObject>> OnPlantsChanged;
+    public event Action<List<GameObject>> OnPlantsChanged;
 
     private void OnEnable()
     {
@@ -46,8 +46,10 @@ public class PlayerActions : MonoBehaviour
                     if (Physics.Raycast(
                             new Ray(CinemachineCamera.transform.position, CinemachineCamera.transform.forward),
                             out _hit, castRange, layersToHit))
+                    {
                         GetPlant(_hit.point, Quaternion.identity);
-                OnPlantsChanged?.Invoke(plantPool);
+                        OnPlantsChanged?.Invoke(plantPool);
+                    }
             }
         }
     }
@@ -76,7 +78,8 @@ public class PlayerActions : MonoBehaviour
                 var prefabGameObject = colliders[i].gameObject;
                 HidePlant(prefabGameObject.gameObject);
             }
-        OnPlantsChanged?.Invoke(plantPool);
+
+            OnPlantsChanged?.Invoke(plantPool);
         }
     }
 
@@ -93,10 +96,10 @@ public class PlayerActions : MonoBehaviour
         {
             GameObject plant = plantPool[0];
             plantPool.RemoveAt(0);
-            plant.transform.position = position;
-            plant.transform.rotation = rotation;
             plant.SetActive(true); // Reactivate the plant
             plant.GetComponent<PlantActions>().Reset();
+            plant.transform.position = position;
+            plant.transform.rotation = rotation;
             return plant;
         }
 
