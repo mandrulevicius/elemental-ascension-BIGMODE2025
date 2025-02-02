@@ -2,6 +2,7 @@ using System;
 using UnityEngine;
 using StarterAssets;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine.Serialization;
 
 public class PlayerActions : MonoBehaviour
@@ -57,8 +58,11 @@ public class PlayerActions : MonoBehaviour
         {
             _inputs.taking = false;
             Collider[] colliders = Physics.OverlapSphere(transform.position, castRange, whatIsPlant);
+            
             for (int i = 0; i < colliders.Length; i++)
             {
+                var prefabGameObject = PrefabUtility.GetCorrespondingObjectFromSource(colliders[i].gameObject);
+                Debug.Log(prefabGameObject.name);
                 Destroy(colliders[i].gameObject);
             }
         }
