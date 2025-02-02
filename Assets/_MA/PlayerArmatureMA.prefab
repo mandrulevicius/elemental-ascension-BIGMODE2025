@@ -1484,7 +1484,9 @@ MonoBehaviour:
   dead: 0
   baseMovespeed: 1
   movespeed: 1
+  damage: 1
   dropPrefab: {fileID: 0}
+  pickupsGathered: 0
 --- !u!114 &3657749348444997107
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15714,6 +15716,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 168522981902117744}
     m_Modifications:
+    - target: {fileID: 2511704822992875367, guid: aea5edd0cc60149449c00e47ea8a252e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3716946837695067516, guid: aea5edd0cc60149449c00e47ea8a252e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
@@ -15828,6 +15834,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 168522981902117744}
     m_Modifications:
+    - target: {fileID: 2511704822992875367, guid: aea5edd0cc60149449c00e47ea8a252e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3716946837695067516, guid: aea5edd0cc60149449c00e47ea8a252e, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
