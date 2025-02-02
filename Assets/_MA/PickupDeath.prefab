@@ -1553,7 +1553,7 @@ ParticleSystem:
     flipU: 0
     flipV: 0
   VelocityModule:
-    enabled: 0
+    enabled: 1
     x:
       serializedVersion: 2
       minMaxState: 0
@@ -2086,15 +2086,15 @@ ParticleSystem:
         m_RotationOrder: 4
     speedModifier:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 1
       scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
         m_Curve:
         - serializedVersion: 3
-          time: 0
-          value: 1
+          time: 0.004386902
+          value: -0.89538383
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -2102,8 +2102,35 @@ ParticleSystem:
           inWeight: 0.33333334
           outWeight: 0.33333334
         - serializedVersion: 3
+          time: 0.107502826
+          value: 0.92176855
+          inSlope: -0.06820104
+          outSlope: -0.06820104
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.3134999
+          value: 0.042427897
+          inSlope: -2.1172407
+          outSlope: -2.1172407
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.33333334
+        - serializedVersion: 3
+          time: 0.4995818
+          value: -0.08141266
+          inSlope: -6.8416095
+          outSlope: -6.8416095
+          tangentMode: 0
+          weightedMode: 0
+          inWeight: 0.33333334
+          outWeight: 0.14607896
+        - serializedVersion: 3
           time: 1
-          value: 1
+          value: -1
           inSlope: 0
           outSlope: 0
           tangentMode: 0
@@ -4922,7 +4949,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 1
+  Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -5120,8 +5147,8 @@ Light:
   serializedVersion: 11
   m_Type: 2
   m_Color: {r: 0.78431374, g: 1, b: 0, a: 1}
-  m_Intensity: 20
-  m_Range: 100
+  m_Intensity: 5
+  m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -5165,7 +5192,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 2.5027e-41, y: 2.524355e-29, z: 0, w: 6.0628113e+29}
+  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 1.267336e-38}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ForceVisible: 0
@@ -5241,8 +5268,8 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 0.78431374, g: 1, b: 0, a: 1}
-  m_Intensity: 10
-  m_Range: 100
+  m_Intensity: 0.5
+  m_Range: 2
   m_SpotAngle: 120.035904
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10

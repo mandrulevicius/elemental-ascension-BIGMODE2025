@@ -1,5 +1,3 @@
-// 002 change Fix health recalculation in MaxHealth setter ChatGPT v5.0
-
 using System;
 using UnityEngine;
 
@@ -43,7 +41,6 @@ public class EntityStats : MonoBehaviour
         get => maxHealth;
         set
         {
-            //>>> 002 change: Fix health recalculation in MaxHealth setter - ChatGPT v5.0
             float previousMaxHealth = maxHealth;
             maxHealth = value;
             if (Mathf.Approximately(Health, previousMaxHealth))
@@ -54,7 +51,6 @@ public class EntityStats : MonoBehaviour
             {
                 Health = Health / previousMaxHealth * maxHealth;
             }
-            //<<<
             OnMaxHealthChanged?.Invoke(maxHealth);
         }
     }
@@ -76,6 +72,7 @@ public class EntityStats : MonoBehaviour
                 OnDestruction?.Invoke();
                 if(deathEffectParticles)
                     Instantiate(deathEffectParticles, transform.position, Quaternion.identity);
+                if (dropPrefab) Instantiate(dropPrefab, transform.position + Vector3.up, Quaternion.identity);
                 Destroy(gameObject, 0f);
                 // Destroy(selfPrefab, 0f);
             }
@@ -98,6 +95,7 @@ public class EntityStats : MonoBehaviour
     }
     public event Action<float> OnMovespeedChanged;
     
+    [SerializeField] private GameObject dropPrefab;
     
     // [SerializeField] public multiplicativeModifier; // one slider to rule them all, affecting all relevant stats
     // additiveModifier
@@ -133,9 +131,6 @@ public class EntityStats : MonoBehaviour
                 Health = 0;
             }
         }
-        // Debug.Log($"{gameObject.name} registered trigger: {other.gameObject.name} ");
-        if (other.gameObject.layer == LayerMask.NameToLayer("Pickup")) Debug.Log($"trigger {gameObject.name} registered trigger: {other.gameObject.name} ");
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player")) Debug.Log($"trigger {gameObject.name} registered trigger: {other.gameObject.name} ");
     }
 
 

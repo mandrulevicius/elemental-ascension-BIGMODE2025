@@ -2509,6 +2509,7 @@ MonoBehaviour:
   dead: 0
   baseMovespeed: 1
   movespeed: 1
+  dropPrefab: {fileID: 3313173769173966745, guid: 07383fddbc790cc4e84f7240159e076f, type: 3}
 --- !u!1 &5763945937693324166
 GameObject:
   m_ObjectHideFlags: 0
