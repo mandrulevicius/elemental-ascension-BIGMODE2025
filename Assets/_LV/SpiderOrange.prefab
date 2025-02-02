@@ -945,7 +945,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.00008, y: 0.00008, z: 0.00008}
+  m_LocalScale: {x: 0.0002, y: 0.0002, z: 0.0002}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 8277967091768180590}
@@ -986,6 +986,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitAudioClip: {fileID: 8300000, guid: 6ebcf1771c4cb244b9b47685b2a4e5f7, type: 3}
+  HitParticles: {fileID: 3543108578963575561, guid: 12616672587cf5b4993a5e380579d816, type: 3}
+  HitGlowBall: {fileID: 1347388969681150466, guid: d1a718642c9ff8c45bc98e1d4c553520, type: 3}
 --- !u!1 &2738787348288288944
 GameObject:
   m_ObjectHideFlags: 0
@@ -3352,7 +3354,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0.32938245, y: -0.70696586, z: -0.0012832576, w: -0.62586325}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.00008, y: 0.00008, z: 0.00007999999}
+  m_LocalScale: {x: 0.0002, y: 0.0002, z: 0.0002}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 774620538694555560}
@@ -3393,6 +3395,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HitAudioClip: {fileID: 8300000, guid: 6ebcf1771c4cb244b9b47685b2a4e5f7, type: 3}
+  HitParticles: {fileID: 3543108578963575561, guid: 12616672587cf5b4993a5e380579d816, type: 3}
+  HitGlowBall: {fileID: 1347388969681150466, guid: d1a718642c9ff8c45bc98e1d4c553520, type: 3}
 --- !u!1 &8765435037334533887
 GameObject:
   m_ObjectHideFlags: 0
@@ -3753,7 +3757,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1347388969681150466, guid: d1a718642c9ff8c45bc98e1d4c553520, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6366706809678843510, guid: d1a718642c9ff8c45bc98e1d4c553520, type: 3}
       propertyPath: m_LocalScale.x
@@ -3831,7 +3835,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1347388969681150466, guid: d1a718642c9ff8c45bc98e1d4c553520, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6366706809678843510, guid: d1a718642c9ff8c45bc98e1d4c553520, type: 3}
       propertyPath: m_LocalScale.x
