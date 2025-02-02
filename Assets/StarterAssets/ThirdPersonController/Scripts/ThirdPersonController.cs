@@ -1,4 +1,6 @@
-﻿ using UnityEngine;
+﻿ using System;
+ using UnityEngine;
+ using Random = UnityEngine.Random;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -16,9 +18,11 @@ namespace StarterAssets
     {
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
+        public float BaseMoveSpeed = 2.0f;
         public float MoveSpeed = 2.0f;
 
         [Tooltip("Sprint speed of the character in m/s")]
+        public float BaseSprintSpeed = 5.335f;
         public float SprintSpeed = 5.335f;
 
         [Tooltip("How fast the character turns to face movement direction")]
@@ -34,6 +38,7 @@ namespace StarterAssets
 
         [Space(10)]
         [Tooltip("The height the player can jump")]
+        public float BaseJumpHeight = 1.2f;
         public float JumpHeight = 1.2f;
 
         [Tooltip("The character uses its own gravity value. The engine default is -9.81f")]
@@ -122,6 +127,7 @@ namespace StarterAssets
             }
         }
 
+        private EntityStats _stats;
 
         private void Awake()
         {
@@ -130,6 +136,17 @@ namespace StarterAssets
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
+            _stats = gameObject.GetComponent<EntityStats>();
+        }
+
+        void OnEnable()
+        {
+            _stats.OnMovespeedChanged += UpdateMovement;
+        }
+        
+        void OnDisable()
+        {
+            _stats.OnMovespeedChanged -= UpdateMovement;
         }
 
         private void Start()
@@ -387,6 +404,13 @@ namespace StarterAssets
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
+        }
+
+        void UpdateMovement(float speed)
+        {
+            MoveSpeed = BaseMoveSpeed * speed;
+            SprintSpeed = BaseSprintSpeed * speed;
+            JumpHeight = BaseJumpHeight * speed;
         }
     }
 }
