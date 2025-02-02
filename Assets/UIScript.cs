@@ -29,7 +29,8 @@ public class UIScript : MonoBehaviour
 
     void HealthChangeUI(float health)
     {
-        HealthText.text = health.ToString();
+        
+        HealthText.text = Mathf.RoundToInt(health).ToString();
     }
 
      void UiPlantUpdate(List<GameObject> plantPool)
