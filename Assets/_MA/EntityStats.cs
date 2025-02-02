@@ -6,6 +6,7 @@ public class EntityStats : MonoBehaviour
     // >>> The One Modifier
     // there should be multiple defaults for The Slider - thats prefabs
     [SerializeField] float multiplicativeModifier = 1f;
+    
     public float MultiplicativeModifier
     {
         get => multiplicativeModifier;
@@ -65,7 +66,6 @@ public class EntityStats : MonoBehaviour
             if (value > MaxHealth) value = MaxHealth;
             health = value;
             OnHealthChanged?.Invoke(health);
-
             if (health <= 0)
             {
                 dead = true;
