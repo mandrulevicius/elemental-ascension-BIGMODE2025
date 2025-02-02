@@ -7,6 +7,7 @@ namespace StarterAssets
 {
 	public class StarterAssetsInputs : MonoBehaviour
 	{
+		[SerializeField] GameObject mainMenu;
 		[Header("Character Input Values")]
 		public Vector2 move;
 		public Vector2 look;
@@ -23,6 +24,7 @@ namespace StarterAssets
 		public bool grow;
 		public bool taking;
 
+		public bool mainMenuOpen;
 
 #if ENABLE_INPUT_SYSTEM
 		public void OnMove(InputValue value)
@@ -58,6 +60,22 @@ namespace StarterAssets
 		public void OnTaking(InputValue value)
 		{
 			Taking(value.isPressed);
+		}
+		public void OnMainMenu(InputValue value)
+		{
+			mainMenuOpen = !mainMenuOpen;
+			if (mainMenuOpen)
+			{
+				Time.timeScale = 0;
+				AudioListener.pause = true;
+				if (mainMenu) mainMenu.SetActive(true);
+			}
+			else
+			{
+				Time.timeScale = 1;
+				AudioListener.pause = false;
+				if (mainMenu) mainMenu.SetActive(false);
+			}
 		}
 #endif
 

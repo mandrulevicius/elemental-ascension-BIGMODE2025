@@ -12063,6 +12063,7 @@ MonoBehaviour:
   action: 0
   grow: 0
   taking: 0
+  mainMenuOpen: 0
 --- !u!4 &272993187387460862
 Transform:
   m_ObjectHideFlags: 0
