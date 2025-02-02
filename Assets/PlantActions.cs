@@ -25,6 +25,7 @@ public class PlantActions : MonoBehaviour
     [SerializeField] private GameObject spwanPlace;
      private Vector3 spawnPosition;
      private Vector3 startScale;
+     public GameObject prefab;
 
      // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -33,6 +34,7 @@ public class PlantActions : MonoBehaviour
         _fullyGrownScale = transform.localScale;
         transform.localScale = Vector3.zero;
         _playerLayer = LayerMask.GetMask("Player");
+        
         
     }
 
@@ -117,6 +119,13 @@ public class PlantActions : MonoBehaviour
 
     void LateUpdate()
     {
+    }
+
+    public void Reset()
+    {
+        _growthTick = 0;
+        fullyGrown = false;
+        transform.localScale = Vector3.zero;
     }
 
     void OnDrawGizmos()

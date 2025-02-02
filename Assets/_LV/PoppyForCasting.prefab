@@ -92,6 +92,7 @@ MonoBehaviour:
   fullyGrown: 0
   particleCapacity: 2
   spwanPlace: {fileID: 5477154952182147363}
+  prefab: {fileID: 1299261345072966613}
 --- !u!136 &5025429122026605876
 CapsuleCollider:
   m_ObjectHideFlags: 0
