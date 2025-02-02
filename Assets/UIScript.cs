@@ -8,6 +8,7 @@ public class UIScript : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI HealthText;
     [SerializeField] TextMeshProUGUI PlantPoolText;
+    [SerializeField] TextMeshProUGUI PickupCountText;
     [SerializeField] GameObject player;
     private PlayerActions playerActions;
     [SerializeField] EntityStats stats;
@@ -31,6 +32,7 @@ public class UIScript : MonoBehaviour
     {
         
         HealthText.text = Mathf.RoundToInt(health).ToString();
+        PickupCountText.text = stats.pickupsGathered.ToString();
     }
 
      void UiPlantUpdate(List<GameObject> plantPool)

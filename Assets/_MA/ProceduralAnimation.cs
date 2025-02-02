@@ -256,7 +256,7 @@ public class ProceduralAnimation : MonoBehaviour
                 // Random.Range(-1, 1))).normalized;
         }
         transform.position += _wanderDirection * (wanderSpeed * Time.fixedDeltaTime);
-        transform.LookAt(new Vector3(_wanderDirection.x, _wanderDirection.y, _wanderDirection.z));
+        transform.LookAt(new Vector3(_wanderDirection.x, _frontRay.direction.y, _wanderDirection.z));
     }
 
     void ProcessLeg(int i)

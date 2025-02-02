@@ -72,8 +72,13 @@ public class EntityStats : MonoBehaviour
                 OnDestruction?.Invoke();
                 if(deathEffectParticles)
                     Instantiate(deathEffectParticles, transform.position, Quaternion.identity);
-                if (dropPrefab) Instantiate(dropPrefab, transform.position + Vector3.up, Quaternion.identity);
-                Destroy(gameObject, 0f);
+                if (dropPrefab)
+                {
+                    var drop = Instantiate(dropPrefab, transform.position + Vector3.up, Quaternion.identity);
+                    drop.transform.localScale = drop.transform.localScale * (float)Math.Sqrt(multiplicativeModifier);
+                    drop.GetComponent<EntityStats>().MultiplicativeModifier = MultiplicativeModifier / 100f;
+                }
+                Destroy(gameObject, 0.1f);
                 // Destroy(selfPrefab, 0f);
             }
         }
@@ -94,24 +99,14 @@ public class EntityStats : MonoBehaviour
         }
     }
     public event Action<float> OnMovespeedChanged;
+
+    public int damage = 1;
     
     [SerializeField] private GameObject dropPrefab;
+
+    public int pickupsGathered = 0;
     
-    // [SerializeField] public multiplicativeModifier; // one slider to rule them all, affecting all relevant stats
-    // additiveModifier
-    // rageOnCondition x Friendlies died
-    // furyOnCondition y Friendlies died
-    // bloodlustOnCondition x Enemies killed
-    // frienzyOnCondition y Enemies killed
-    // reset counter
-    // gaining specific energy grants specific resource.
-    // on each entity death, send data to higher level layers of the program. Entity stats is mid-level local.
-    // need to have a global static class for each entity's Layers death tallies.
-    
-    // but first, just drop a pickup that increases the stat, and have it fly at player from anywhere or closest plants from their range.
-    
-    //CAMERA - playerFollowCamera Lens FOV. Vertical should increase when moving fast.
-    // camera distance and side should change based on The One Slider.
+
 
 
     void OnTriggerEnter(Collider other)
@@ -120,7 +115,12 @@ public class EntityStats : MonoBehaviour
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Pickup"))
             {
-                MultiplicativeModifier += other.gameObject.GetComponent<EntityStats>().multiplicativeModifier;
+                var pickupStats = other.gameObject.GetComponent<EntityStats>();
+                if (pickupStats)
+                {
+                    pickupsGathered += (int)pickupStats.MultiplicativeModifier * 100;
+                    MultiplicativeModifier += pickupStats.multiplicativeModifier;
+                }
                 Health += 1;
             }
         }
@@ -143,10 +143,22 @@ public class EntityStats : MonoBehaviour
         MultiplicativeModifier = 1f;
         MultiplicativeModifier = lastMultiplicativeModifier;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
+
+
+
+// [SerializeField] public multiplicativeModifier; // one slider to rule them all, affecting all relevant stats
+// additiveModifier
+// rageOnCondition x Friendlies died
+// furyOnCondition y Friendlies died
+// bloodlustOnCondition x Enemies killed
+// frienzyOnCondition y Enemies killed
+// reset counter
+// gaining specific energy grants specific resource.
+// on each entity death, send data to higher level layers of the program. Entity stats is mid-level local.
+// need to have a global static class for each entity's Layers death tallies.
+    
+// but first, just drop a pickup that increases the stat, and have it fly at player from anywhere or closest plants from their range.
+    
+//CAMERA - playerFollowCamera Lens FOV. Vertical should increase when moving fast.
+// camera distance and side should change based on The One Slider.
