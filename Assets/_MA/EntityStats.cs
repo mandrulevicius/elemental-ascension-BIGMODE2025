@@ -76,9 +76,9 @@ public class EntityStats : MonoBehaviour
                 {
                     var drop = Instantiate(dropPrefab, transform.position + Vector3.up, Quaternion.identity);
                     drop.transform.localScale = drop.transform.localScale * (float)Math.Sqrt(multiplicativeModifier);
-                    drop.GetComponent<EntityStats>().MultiplicativeModifier = MultiplicativeModifier / 100;
+                    drop.GetComponent<EntityStats>().MultiplicativeModifier = MultiplicativeModifier / 100f;
                 }
-                Destroy(gameObject, 0f);
+                Destroy(gameObject, 0.1f);
                 // Destroy(selfPrefab, 0f);
             }
         }
