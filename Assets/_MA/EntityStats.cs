@@ -118,7 +118,24 @@ public class EntityStats : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        if (gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Pickup"))
+            {
+                MultiplicativeModifier += other.gameObject.GetComponent<EntityStats>().multiplicativeModifier;
+            }
+        }
+
+        if (gameObject.layer == LayerMask.NameToLayer("Pickup"))
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                Health = 0;
+            }
+        }
         // Debug.Log($"{gameObject.name} registered trigger: {other.gameObject.name} ");
+        if (other.gameObject.layer == LayerMask.NameToLayer("Pickup")) Debug.Log($"trigger {gameObject.name} registered trigger: {other.gameObject.name} ");
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player")) Debug.Log($"trigger {gameObject.name} registered trigger: {other.gameObject.name} ");
     }
 
 
