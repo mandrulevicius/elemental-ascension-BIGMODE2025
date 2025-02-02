@@ -117,9 +117,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8216504270235281074}
+  - component: {fileID: 4662235597349569907}
   m_Layer: 9
   m_Name: StaffOfFireflies
-  m_TagString: Untagged
+  m_TagString: Poppy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,7 +135,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1277352254496758440}
@@ -143,6 +144,30 @@ Transform:
   - {fileID: 1150114334910263577}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4662235597349569907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4048621538083846886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3764a1ec84bf05945ae1920de7cf71f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 0}
+  _particleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  spawnTime: 600
+  castRange: 0.4
+  attackSpeed: 5
+  ticksUntilFullyGrown: 120
+  fullyGrown: 0
+  particleCapacity: 2
+  spwanPlace: {fileID: 0}
+  prefab: {fileID: 0}
 --- !u!1 &6369410370684952967
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,19 +350,19 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6013125811604741323, guid: 0ba79b6f4dc828849b9256d4ffb9e074, type: 3}
       propertyPath: m_BoundingSphereOverride.w
-      value: 6.54e-43
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6013125811604741323, guid: 0ba79b6f4dc828849b9256d4ffb9e074, type: 3}
       propertyPath: m_BoundingSphereOverride.x
-      value: NaN
+      value: -0.020057661
       objectReference: {fileID: 0}
     - target: {fileID: 6013125811604741323, guid: 0ba79b6f4dc828849b9256d4ffb9e074, type: 3}
       propertyPath: m_BoundingSphereOverride.y
-      value: 0.0000000072963786
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6013125811604741323, guid: 0ba79b6f4dc828849b9256d4ffb9e074, type: 3}
       propertyPath: m_BoundingSphereOverride.z
-      value: 5.32e-43
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8201478027261178950, guid: 0ba79b6f4dc828849b9256d4ffb9e074, type: 3}
       propertyPath: m_Name
