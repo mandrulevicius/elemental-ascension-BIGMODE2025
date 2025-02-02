@@ -2274,7 +2274,7 @@ GameObject:
   - component: {fileID: 3649028940681148641}
   - component: {fileID: -8568585512919104522}
   m_Layer: 0
-  m_Name: BigSpider
+  m_Name: EliteSpider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2417,7 +2417,7 @@ MonoBehaviour:
   whatIsGroud:
     serializedVersion: 2
     m_Bits: 128
-  distanceToSnap: 1
+  distanceToSnap: 2
   legTargetVariation: 0.1
   legStartOffsets:
   - 0
@@ -2452,7 +2452,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5632521191423712832}
   serializedVersion: 4
-  m_Mass: 10
+  m_Mass: 100
   m_Drag: 0.5
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
