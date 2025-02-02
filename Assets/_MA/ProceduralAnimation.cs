@@ -125,7 +125,7 @@ public class ProceduralAnimation : MonoBehaviour
             if (other.Length > 0)
                 for (int i = 0; i < other.Length; i++)
                 {
-                    if (other[i].transform.root.gameObject.GetComponent<EntityStats>().dead)
+                    if (other[i].transform.GetComponentInParent<EntityStats>().dead)
                     {
                         continue;
                     }
