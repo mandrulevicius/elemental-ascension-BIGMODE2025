@@ -6,7 +6,7 @@ using UnityEngine;
 public class EntityStats : MonoBehaviour
 {
     // >>> The One Modifier
-    // there should be multiple defaults for The Slider
+    // there should be multiple defaults for The Slider - thats prefabs
     [SerializeField] float multiplicativeModifier = 1f;
     public float MultiplicativeModifier
     {
@@ -29,6 +29,8 @@ public class EntityStats : MonoBehaviour
     }
     public event Action<float> OnMultiplicativeModifierChanged;
     // <<< The One Modifier
+    
+    // entity's power
     
     private Vector3 _baseScale = new (1f, 1f, 1f);
     

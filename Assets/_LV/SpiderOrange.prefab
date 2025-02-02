@@ -2501,10 +2501,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9f1e4eebb781c4439a58a94a7a07cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  multiplicativeModifier: 1
   deathEffectParticles: {fileID: 0}
+  baseHealth: 10
   maxHealth: 10
   health: 10
   dead: 0
+  baseMovespeed: 1
+  movespeed: 1
 --- !u!1 &5763945937693324166
 GameObject:
   m_ObjectHideFlags: 0
