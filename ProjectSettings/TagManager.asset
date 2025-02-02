@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - Poppy
+  - Lily
   layers:
   - Default
   - TransparentFX

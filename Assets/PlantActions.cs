@@ -26,6 +26,7 @@ public class PlantActions : MonoBehaviour
      private Vector3 spawnPosition;
      private Vector3 startScale;
      public GameObject prefab;
+     public bool spawned;
 
      // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -51,7 +52,7 @@ public class PlantActions : MonoBehaviour
         Collider[] particles = Physics.OverlapSphere(  spwanPlace.transform.position, castRange*2, _particleLayer);
 
         _tick += 1;
-        if(fullyGrown)
+        if(fullyGrown && spawned)
         _spawnTick += 1;
         // spwan
         if (_spawnTick >= spawnTime)
