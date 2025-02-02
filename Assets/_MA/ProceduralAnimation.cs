@@ -249,14 +249,14 @@ public class ProceduralAnimation : MonoBehaviour
         {
             _wanderTick = 0;
             _wanderDurationTicks = Random.Range(minDuration, maxDuration);
-            _wanderDirection = (Random.onUnitSphere + _frontRay.direction + Vector3.up).normalized; // Vector3.forward + 
+            _wanderDirection = ((Random.onUnitSphere+ _frontRay.direction + Vector3.up) / 3f).normalized; // Vector3.forward + 
             // _wanderDirection = (new Vector3(
                 // Random.Range(-1, 1), 
                 // Random.Range(-1, 1), 
                 // Random.Range(-1, 1))).normalized;
         }
         transform.position += _wanderDirection * (wanderSpeed * Time.fixedDeltaTime);
-        transform.LookAt(new Vector3(_wanderDirection.x, transform.position.y, _wanderDirection.z));
+        transform.LookAt(new Vector3(_wanderDirection.x, _wanderDirection.y, _wanderDirection.z));
     }
 
     void ProcessLeg(int i)

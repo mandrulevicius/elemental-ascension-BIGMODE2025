@@ -114,10 +114,13 @@ public class EntityStats : MonoBehaviour
     
     //CAMERA - playerFollowCamera Lens FOV. Vertical should increase when moving fast.
     // camera distance and side should change based on The One Slider.
-    
 
-    
-    
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log($"{gameObject.name} registered trigger: {other.gameObject.name} ");
+    }
+
 
     void Start()
     {
