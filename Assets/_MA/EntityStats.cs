@@ -25,6 +25,7 @@ public class EntityStats : MonoBehaviour
             damage = baseDamage * multiplicativeModifier;
             
             // transform.localScale = _baseScale * multiplicativeModifier;
+            plantSpeed = BasePlantSpeed / multiplicativeModifier;
             
             OnMultiplicativeModifierChanged?.Invoke(multiplicativeModifier);
         }
@@ -40,7 +41,8 @@ public class EntityStats : MonoBehaviour
     public event Action<float> OnMaxHealthChanged;
     [SerializeField] private float baseHealth = 100f;
     [SerializeField] private float maxHealth = 100f;
-    [SerializeField] public float plantSpeed = 120f;
+    [SerializeField] public float BasePlantSpeed = 100f;
+    [SerializeField] public float plantSpeed = 100f;
     public float MaxHealth
     {
         get => maxHealth;

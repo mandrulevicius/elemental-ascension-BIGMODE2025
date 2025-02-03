@@ -5234,6 +5234,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4863371799943243366, guid: 5cca0ae98f4554644a620d0705981f2a, type: 3}
+      propertyPath: plantSpeed
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 4863371799943243366, guid: 5cca0ae98f4554644a620d0705981f2a, type: 3}
+      propertyPath: BasePlantSpeed
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7022855532524707796, guid: 5cca0ae98f4554644a620d0705981f2a, type: 3}
       propertyPath: mainMenu
       value: 
