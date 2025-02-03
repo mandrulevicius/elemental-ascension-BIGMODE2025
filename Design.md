@@ -295,3 +295,5 @@ Entry for BIGMODE 2025 Game Jam by Mindaugas and Laimonas.
 [itch.io](https://nonumbersgames.itch.io/atlanta-2173-flowers-vs-robot-spiders)
 
 [github](https://github.com/mandrulevicius/elemental-ascension-BIGMODE2025)
+
+[youtube](https://youtu.be/soauF7iegT0)
