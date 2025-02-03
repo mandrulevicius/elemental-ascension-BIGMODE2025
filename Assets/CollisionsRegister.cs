@@ -18,7 +18,11 @@ public class CollisionsRegister : MonoBehaviour
        playerStats = other.gameObject.GetComponent<EntityStats>();
        playerStats.Health -= gameObject.GetComponentInParent<EntityStats>().damage;
         if(HitAudioClip)
-               AudioSource.PlayClipAtPoint(HitAudioClip, transform.position, 1);
+        {
+            
+            AudioSource.PlayClipAtPoint(HitAudioClip, transform.position, 0.4f);
+            
+        }
         if (HitParticles)
             Instantiate(HitParticles, transform.position, Quaternion.identity);
         if (HitGlowBall)
