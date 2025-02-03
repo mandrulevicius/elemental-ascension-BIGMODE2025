@@ -3681,7 +3681,7 @@ ParticleSystem:
         m_NumAlphaKeys: 2
     range: {x: 0, y: 100}
   CollisionModule:
-    enabled: 1
+    enabled: 0
     serializedVersion: 4
     type: 1
     collisionMode: 0
@@ -3882,7 +3882,7 @@ ParticleSystem:
       emitProbability: 1
   LightsModule:
     enabled: 1
-    ratio: 0.5
+    ratio: 0.2
     light: {fileID: 5999518627898266233}
     randomDistribution: 1
     color: 1
@@ -3994,7 +3994,7 @@ ParticleSystem:
         m_PreInfinity: 2
         m_PostInfinity: 2
         m_RotationOrder: 4
-    maxLights: 50
+    maxLights: 20
   TrailModule:
     enabled: 0
     mode: 0
