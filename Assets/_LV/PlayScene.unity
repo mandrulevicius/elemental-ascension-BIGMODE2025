@@ -3563,11 +3563,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 10376517354502705, guid: b8bcb5d949523c7429b103058308aa39, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.9
+      value: -17.06
       objectReference: {fileID: 0}
     - target: {fileID: 10376517354502705, guid: b8bcb5d949523c7429b103058308aa39, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -6
+      value: -7.07
       objectReference: {fileID: 0}
     - target: {fileID: 683194063135824327, guid: b8bcb5d949523c7429b103058308aa39, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3611,15 +3611,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1312709669029005279, guid: b8bcb5d949523c7429b103058308aa39, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1360085052350972650, guid: b8bcb5d949523c7429b103058308aa39, type: 3}
+      propertyPath: onTimer
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4065649429577045458, guid: b8bcb5d949523c7429b103058308aa39, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.9
+      value: 29.1
       objectReference: {fileID: 0}
     - target: {fileID: 4065649429577045458, guid: b8bcb5d949523c7429b103058308aa39, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 54.7
+      value: -0.2
       objectReference: {fileID: 0}
     - target: {fileID: 4324808107159894973, guid: b8bcb5d949523c7429b103058308aa39, type: 3}
       propertyPath: m_Name
@@ -4842,6 +4846,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1312709669029005279, guid: b8bcb5d949523c7429b103058308aa39, type: 3}
       propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1360085052350972650, guid: b8bcb5d949523c7429b103058308aa39, type: 3}
+      propertyPath: onTimer
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4065649429577045458, guid: b8bcb5d949523c7429b103058308aa39, type: 3}
