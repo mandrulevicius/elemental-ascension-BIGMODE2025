@@ -28,6 +28,7 @@ public class UIScript : MonoBehaviour
         stats.OnHealthChanged += HealthChangeUI;
         playerActions = player.GetComponent<PlayerActions>();
         playerActions.OnPlanting += UiSliderUbdate;
+        playerActions.OnPlantsChanged += UiPlantUpdate;
     }
 
     void UiSliderUbdate(float value)
