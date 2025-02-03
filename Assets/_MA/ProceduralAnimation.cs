@@ -159,7 +159,7 @@ public class ProceduralAnimation : MonoBehaviour
         {   
             if(Vector3.Distance(transform.position, _hit.point) < 0.1 && legTargets.Count < 1);
             {
-                stats.Health -= 1;
+                stats.Health -= 1; // projectile explodes when hitting the ground
             }
             // transform.LookAt(new Vector3(_hit.point.x, _hit.point.y + 1, _hit.point.z)); // delta time here
         }
