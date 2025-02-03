@@ -283,9 +283,8 @@ Saturday 17:00, we fixed last critical issue with logic, have most prefabs, can 
 Have some terrains to place stuff in, just need to place more stuff, then remove some.
 Want to have a brush for placing prefabs
 
-
+Sunday 05:53 sleep deprivation is detrimental.
 
 ---
 #### References
-
 
