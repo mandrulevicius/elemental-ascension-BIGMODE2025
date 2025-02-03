@@ -285,6 +285,13 @@ Want to have a brush for placing prefabs
 
 Sunday 05:53 sleep deprivation is detrimental.
 
+TRIAL BY FIRE IS COMPLETE! Was difficult, but very much worth it.
+
 ---
 #### References
 
+Entry for BIGMODE 2025 Game Jam by Mindaugas and Laimonas.
+
+[itch.io](https://nonumbersgames.itch.io/atlanta-2173-flowers-vs-robot-spiders)
+
+[github](https://github.com/mandrulevicius/elemental-ascension-BIGMODE2025)
