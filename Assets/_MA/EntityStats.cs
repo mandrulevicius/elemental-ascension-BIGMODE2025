@@ -1,4 +1,5 @@
 using System;
+using StarterAssets;
 using UnityEngine;
 
 public class EntityStats : MonoBehaviour
@@ -73,6 +74,10 @@ public class EntityStats : MonoBehaviour
             {
                 dead = true;
                 OnDestruction?.Invoke();
+                if (gameObject.layer == LayerMask.NameToLayer("Player"))
+                {
+                    gameObject.GetComponent<StarterAssetsInputs>().ToggleMainMenu();
+                }
                 if(deathEffectParticles)
                     Instantiate(deathEffectParticles, transform.position, Quaternion.identity);
                 if (dropPrefab)
