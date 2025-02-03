@@ -138,7 +138,7 @@ MonoBehaviour:
   fullyGrown: 0
   friends:
     serializedVersion: 2
-    m_Bits: 2817
+    m_Bits: 6913
 --- !u!114 &146035637275887224
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,7 +236,10 @@ MonoBehaviour:
   dead: 0
   baseMovespeed: 1
   movespeed: 1
+  baseDamage: 1
+  damage: 1
   dropPrefab: {fileID: 0}
+  pickupsGathered: 0
 --- !u!1 &8524977248042745655
 GameObject:
   m_ObjectHideFlags: 0
