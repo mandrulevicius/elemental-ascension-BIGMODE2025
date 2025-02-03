@@ -69,11 +69,8 @@ public class PlantActions : MonoBehaviour
                 _lastSpawn.transform.localScale =  transform.localScale / coef;
                 if(player)
                 {
-                    _lastSpawn.transform.GetComponent<ProceduralAnimation>().range *=
+                    _lastSpawn.gameObject.GetComponent<ProceduralAnimation>().range *=
                         player.GetComponent<EntityStats>().MultiplicativeModifier;
-                    
-                    Debug.Log(_lastSpawn.transform.GetComponent<ProceduralAnimation>().range);
-                    Debug.Log(player.GetComponent<EntityStats>().MultiplicativeModifier);
                 }
             }
 
