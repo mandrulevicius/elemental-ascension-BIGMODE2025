@@ -78,9 +78,11 @@ public class EntityStats : MonoBehaviour
             {
                 dead = true;
                 OnDestruction?.Invoke();
-                if (gameObject.tag == "Boss")
+                if (gameObject.CompareTag("Boss"))
                 {
+                    
                     OnBossDeath?.Invoke();
+                    gameObject.GetComponent<StarterAssetsInputs>().ToggleMainMenu();
                     return;
                 }
                 if (gameObject.layer == LayerMask.NameToLayer("Player"))
