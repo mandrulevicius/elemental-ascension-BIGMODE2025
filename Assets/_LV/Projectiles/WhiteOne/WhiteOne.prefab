@@ -129,7 +129,7 @@ MonoBehaviour:
   _enemies:
     serializedVersion: 2
     m_Bits: 1024
-  range: 50
+  range: 100
   speed: 50
   damage: 1
   lifetimeTicks: 500
@@ -232,6 +232,8 @@ MonoBehaviour:
   deathEffectParticles: {fileID: 3543108578963575561, guid: c576855632243fa4a95e30dfbf7bc470, type: 3}
   baseHealth: 1
   maxHealth: 1
+  BasePlantSpeed: 100
+  plantSpeed: 100
   health: 1
   dead: 0
   baseMovespeed: 1
