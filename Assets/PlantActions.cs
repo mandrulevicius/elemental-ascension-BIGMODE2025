@@ -36,8 +36,11 @@ public class PlantActions : MonoBehaviour
         transform.localScale = Vector3.zero;
         _playerLayer = LayerMask.GetMask("Player");
         
-        player = Physics.OverlapSphere(  spwanPlace.transform.position, castRange*2, _playerLayer)[0].gameObject;
-        
+        Collider [] playerCollider = Physics.OverlapSphere(  spwanPlace.transform.position, castRange*2, _playerLayer);
+        if (playerCollider.Length > 0)
+        {
+            player = playerCollider[0].gameObject;
+        }
 
     }
 
@@ -64,8 +67,14 @@ public class PlantActions : MonoBehaviour
                 _lastSpawn = Instantiate(particle, spawnPosition, Quaternion.identity);
                 var coef = startScale.x / _lastSpawn.transform.localScale.x;
                 _lastSpawn.transform.localScale =  transform.localScale / coef;
-                _lastSpawn.transform.GetComponent<ProceduralAnimation>().range *=
-                    player.GetComponent<EntityStats>().MultiplicativeModifier;
+                if(player)
+                {
+                    _lastSpawn.transform.GetComponent<ProceduralAnimation>().range *=
+                        player.GetComponent<EntityStats>().MultiplicativeModifier;
+                    
+                    Debug.Log(_lastSpawn.transform.GetComponent<ProceduralAnimation>().range);
+                    Debug.Log(player.GetComponent<EntityStats>().MultiplicativeModifier);
+                }
             }
 
             _spawnTick = 0;

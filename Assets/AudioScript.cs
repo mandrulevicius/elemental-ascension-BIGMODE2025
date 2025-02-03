@@ -14,7 +14,15 @@ public class AudioScript : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
+        if (wandering)
+        {
         setWandering();
+        }
+        if (fight)
+        {
+            wandering = false;
+            setFighting();
+        }
     }
 
     // Update is called once per frame
@@ -28,6 +36,13 @@ public class AudioScript : MonoBehaviour
         wandering = true;
         audioSource.clip = WanderingAudioClip;
         audioSource.pitch = -0.5f;
+        audioSource.Play();
+    }  
+   public void setFighting()
+    {
+        wandering = true;
+        audioSource.clip = FightingAudioClip;
+        audioSource.pitch = 0f;
         audioSource.Play();
     }
 }
