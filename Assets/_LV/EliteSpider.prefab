@@ -2429,8 +2429,8 @@ MonoBehaviour:
   windUpTime: 5
   attackTime: 5
   windDownTime: 10
-  cooldown: 5
-  speed: 3
+  cooldown: 10
+  speed: 4
   range: 50
   legMovespeed: 60
   legLiftSpeed: 0.02
@@ -2508,6 +2508,7 @@ MonoBehaviour:
   deathEffectParticles: {fileID: 3543108578963575561, guid: 83f82c8c9f73f51439f516f56875c218, type: 3}
   baseHealth: 10
   maxHealth: 10
+  plantSpeed: 120
   health: 10
   dead: 0
   baseMovespeed: 1
