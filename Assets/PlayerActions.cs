@@ -72,7 +72,9 @@ public class PlayerActions : MonoBehaviour
             {
                 GetPlant(_hit.point, Quaternion.identity);
             }
+            startTick = false;
             _time = 0;
+            OnPlanting?.Invoke(_time/stats.plantSpeed);
         }
     }
 
