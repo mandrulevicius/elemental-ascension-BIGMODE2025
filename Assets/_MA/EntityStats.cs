@@ -77,6 +77,7 @@ public class EntityStats : MonoBehaviour
                 if (gameObject.layer == LayerMask.NameToLayer("Player"))
                 {
                     gameObject.GetComponent<StarterAssetsInputs>().ToggleMainMenu();
+                    return;
                 }
                 if(deathEffectParticles)
                     Instantiate(deathEffectParticles, transform.position, Quaternion.identity);
