@@ -39,8 +39,8 @@ public class UIScript : MonoBehaviour
     void HealthChangeUI(float health)
     {
         
-        HealthText.text = Mathf.RoundToInt(health).ToString();
-        PickupCountText.text = stats.pickupsGathered.ToString();
+        HealthText.text = "Health: " + Mathf.RoundToInt(health).ToString();
+        PickupCountText.text ="Power: " + stats.pickupsGathered.ToString();
     }
 
      void UiPlantUpdate(List<GameObject> plantPool)

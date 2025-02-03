@@ -130,7 +130,8 @@ public class EntityStats : MonoBehaviour
                 var pickupStats = other.gameObject.GetComponent<EntityStats>();
                 if (pickupStats)
                 {
-                    pickupsGathered += (int)pickupStats.MultiplicativeModifier * 100;
+                    
+                    pickupsGathered += Mathf.RoundToInt(pickupStats.MultiplicativeModifier * 100);
                     MultiplicativeModifier += pickupStats.multiplicativeModifier;
                 }
                 Health += 1;
