@@ -62,10 +62,7 @@ public class PlayerActions : MonoBehaviour
             startTick = true;
         }
 
-        if (_inputs.move != Vector2.zero)
-        {
-            _time = 0;
-        }
+       
 
         if (_inputs.action && _time >= stats.plantSpeed)
         {

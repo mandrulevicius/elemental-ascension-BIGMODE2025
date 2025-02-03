@@ -6,7 +6,7 @@ public class PlantActions : MonoBehaviour
     [SerializeField] private GameObject particle;
     [SerializeField] private LayerMask _particleLayer;
     private int _playerLayer;
-
+    private GameObject player;
     private float _tick;
     private float _spawnTick;
     private float _growthTick;
@@ -36,7 +36,9 @@ public class PlantActions : MonoBehaviour
         transform.localScale = Vector3.zero;
         _playerLayer = LayerMask.GetMask("Player");
         
+        player = Physics.OverlapSphere(  spwanPlace.transform.position, castRange*2, _playerLayer)[0].gameObject;
         
+
     }
 
     // Update is called once per frame
@@ -62,6 +64,8 @@ public class PlantActions : MonoBehaviour
                 _lastSpawn = Instantiate(particle, spawnPosition, Quaternion.identity);
                 var coef = startScale.x / _lastSpawn.transform.localScale.x;
                 _lastSpawn.transform.localScale =  transform.localScale / coef;
+                _lastSpawn.transform.GetComponent<ProceduralAnimation>().range *=
+                    player.GetComponent<EntityStats>().MultiplicativeModifier;
             }
 
             _spawnTick = 0;

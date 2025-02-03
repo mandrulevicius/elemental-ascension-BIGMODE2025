@@ -48,7 +48,7 @@ public class ProceduralAnimation : MonoBehaviour
     [SerializeField] private float windDownTime = 15;
     [SerializeField] private float cooldown = 60;
     [SerializeField] float speed = 5f;
-    [SerializeField] private float range = 5f;
+    [SerializeField] public float range = 10f;
     [SerializeField] private float legMovespeed = 60f;
     [SerializeField] private float legLiftSpeed = 0.02f;
     public bool isCooldowning;
