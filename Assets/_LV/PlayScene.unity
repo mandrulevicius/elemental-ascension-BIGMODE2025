@@ -6569,13 +6569,17 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4753790202746023237, guid: f571ebae0ce270c4681555936d52707e, type: 3}
+      propertyPath: m_Volume
+      value: 0.37
+      objectReference: {fileID: 0}
+    - target: {fileID: 4753790202746023237, guid: f571ebae0ce270c4681555936d52707e, type: 3}
       propertyPath: m_Resource
       value: 
-      objectReference: {fileID: 8300000, guid: 3d47a3e45e08cae4f92582bf42f97514, type: 3}
+      objectReference: {fileID: 8300000, guid: 0e7ce78b4cc94cd458e5dcb87e4ac9cf, type: 3}
     - target: {fileID: 4753790202746023237, guid: f571ebae0ce270c4681555936d52707e, type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 3d47a3e45e08cae4f92582bf42f97514, type: 3}
+      objectReference: {fileID: 8300000, guid: 0e7ce78b4cc94cd458e5dcb87e4ac9cf, type: 3}
     - target: {fileID: 5243407402920689362, guid: f571ebae0ce270c4681555936d52707e, type: 3}
       propertyPath: m_fontSize
       value: 24
@@ -6639,7 +6643,7 @@ PrefabInstance:
     - target: {fileID: 9067384683483887072, guid: f571ebae0ce270c4681555936d52707e, type: 3}
       propertyPath: FightingAudioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 67ffad14c6b76134d90dbc6c368a0fbf, type: 3}
+      objectReference: {fileID: 8300000, guid: 2f09608db9a60834dbf54a6312d07c19, type: 3}
     - target: {fileID: 9067384683483887072, guid: f571ebae0ce270c4681555936d52707e, type: 3}
       propertyPath: WanderingAudioClip
       value: 
