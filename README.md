@@ -34,7 +34,7 @@ _"Synergies between powers can create more than the sum of their parts"_
 Entry for BIGMODE2025 Game Jam by Mindaugas and Laimonas
 
 ### itch.io
-[Play here](https://nonumbersgames.itch.io/atlanta-2173-flowers-vs-robot-spiders)
+[Download here](https://nonumbersgames.itch.io/atlanta-2173-flowers-vs-robot-spiders)
 
 ### Assets used
 Unity Third Person Starter Assets for player controller
