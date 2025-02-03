@@ -2426,10 +2426,10 @@ MonoBehaviour:
   - -1
   _tick: 0
   isAttacking: 0
-  windUpTime: 25
-  attackTime: 10
-  windDownTime: 25
-  cooldown: 25
+  windUpTime: 5
+  attackTime: 5
+  windDownTime: 10
+  cooldown: 5
   speed: 3
   range: 50
   legMovespeed: 60
@@ -2512,6 +2512,7 @@ MonoBehaviour:
   dead: 0
   baseMovespeed: 1
   movespeed: 1
+  baseDamage: 1
   damage: 1
   dropPrefab: {fileID: 3313173769173966745, guid: 07383fddbc790cc4e84f7240159e076f, type: 3}
   pickupsGathered: 0

@@ -21,7 +21,10 @@ public class PlayerActions : MonoBehaviour
     [SerializeField] private LayerMask whatIsPlant;
     public List<GameObject> plantPool = new List<GameObject>();
     [SerializeField] private GameObject plantPrefab;
+    private bool startTick;
+    private float _time;
     public event Action<List<GameObject>> OnPlantsChanged;
+    public event Action<float> OnPlanting;
 
     private void OnEnable()
     {
@@ -31,6 +34,12 @@ public class PlayerActions : MonoBehaviour
 
     private void Update()
     {
+        if (startTick)
+        {
+            _time += 1;
+            OnPlanting?.Invoke(_time/stats.plantSpeed);
+        }
+
         Action();
         Growing();
         Taking();
@@ -38,18 +47,35 @@ public class PlayerActions : MonoBehaviour
 
     public void Action()
     {
-        if (_inputs.action)
-        {
-            _inputs.action = false;
+        if (!_inputs.action)
+        { 
+            if(_time !=0)
             {
-                if (plantPool.Count > 0)
-                    if (Physics.Raycast(
-                            new Ray(CinemachineCamera.transform.position, CinemachineCamera.transform.forward),
-                            out _hit, castRange, layersToHit))
-                    {
-                        GetPlant(_hit.point, Quaternion.identity);
-                    }
+                _time = 0;
             }
+            startTick = false;
+            OnPlanting?.Invoke(_time/stats.plantSpeed);
+            return;
+        }
+        if (_inputs.action && plantPool.Count > 0)
+        {
+            startTick = true;
+        }
+
+        if (_inputs.move != Vector2.zero)
+        {
+            _time = 0;
+        }
+
+        if (_inputs.action && _time >= stats.plantSpeed)
+        {
+            if (Physics.Raycast(
+                    new Ray(CinemachineCamera.transform.position, CinemachineCamera.transform.forward),
+                    out _hit, castRange, layersToHit))
+            {
+                GetPlant(_hit.point, Quaternion.identity);
+            }
+            _time = 0;
         }
     }
 
@@ -102,7 +128,6 @@ public class PlayerActions : MonoBehaviour
             plant.GetComponent<PlantActions>().spawned = true;
             OnPlantsChanged?.Invoke(plantPool);
             return plant;
-
         }
 
         // No available plants, instantiate a new one

@@ -39,6 +39,7 @@ public class EntityStats : MonoBehaviour
     public event Action<float> OnMaxHealthChanged;
     [SerializeField] private float baseHealth = 100f;
     [SerializeField] private float maxHealth = 100f;
+    [SerializeField] public float plantSpeed = 120f;
     public float MaxHealth
     {
         get => maxHealth;

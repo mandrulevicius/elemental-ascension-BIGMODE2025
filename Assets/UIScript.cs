@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using NUnit.Framework;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIScript : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class UIScript : MonoBehaviour
     [SerializeField] GameObject player;
     private PlayerActions playerActions;
     [SerializeField] EntityStats stats;
+    [SerializeField] private Slider slider;
 
     [SerializeField] private GameObject audioManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -25,7 +27,12 @@ public class UIScript : MonoBehaviour
         stats = player.GetComponent<EntityStats>();
         stats.OnHealthChanged += HealthChangeUI;
         playerActions = player.GetComponent<PlayerActions>();
-        playerActions.OnPlantsChanged += UiPlantUpdate;
+        playerActions.OnPlanting += UiSliderUbdate;
+    }
+
+    void UiSliderUbdate(float value)
+    {
+        slider.value = value;
     }
 
     void HealthChangeUI(float health)
