@@ -10,10 +10,13 @@ public class UIScript : MonoBehaviour
     [SerializeField] TextMeshProUGUI HealthText;
     [SerializeField] TextMeshProUGUI PlantPoolText;
     [SerializeField] TextMeshProUGUI PickupCountText;
+    [SerializeField] TextMeshProUGUI VictoryText;
     [SerializeField] GameObject player;
     private PlayerActions playerActions;
     [SerializeField] EntityStats stats;
     [SerializeField] private Slider slider;
+    
+    
 
     [SerializeField] private GameObject audioManager;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -29,6 +32,12 @@ public class UIScript : MonoBehaviour
         playerActions = player.GetComponent<PlayerActions>();
         playerActions.OnPlanting += UiSliderUbdate;
         playerActions.OnPlantsChanged += UiPlantUpdate;
+        stats.OnBossDeath += EnableVictoryText;
+    }
+
+    void EnableVictoryText()
+    {
+        VictoryText.gameObject.SetActive(true);
     }
 
     void UiSliderUbdate(float value)

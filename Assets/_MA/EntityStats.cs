@@ -62,6 +62,8 @@ public class EntityStats : MonoBehaviour
         }
     }
 
+    public bool bossDead;
+
     public event Action OnBossDeath;
 
     public event Action<float> OnHealthChanged;
@@ -80,7 +82,7 @@ public class EntityStats : MonoBehaviour
                 OnDestruction?.Invoke();
                 if (gameObject.CompareTag("Boss"))
                 {
-                    
+                    bossDead = true;
                     OnBossDeath?.Invoke();
                     gameObject.GetComponent<StarterAssetsInputs>().ToggleMainMenu();
                     return;
