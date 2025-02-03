@@ -63,19 +63,7 @@ namespace StarterAssets
 		}
 		public void OnMainMenu(InputValue value)
 		{
-			mainMenuOpen = !mainMenuOpen;
-			if (mainMenuOpen)
-			{
-				Time.timeScale = 0;
-				AudioListener.pause = true;
-				if (mainMenu) mainMenu.SetActive(true);
-			}
-			else
-			{
-				Time.timeScale = 1;
-				AudioListener.pause = false;
-				if (mainMenu) mainMenu.SetActive(false);
-			}
+			ToggleMainMenu();
 		}
 #endif
 
@@ -118,6 +106,23 @@ namespace StarterAssets
 		private void SetCursorState(bool newState)
 		{
 			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+		}
+
+		public void ToggleMainMenu()
+		{
+			mainMenuOpen = !mainMenuOpen;
+			if (mainMenuOpen)
+			{
+				Time.timeScale = 0;
+				AudioListener.pause = true;
+				if (mainMenu) mainMenu.SetActive(true);
+			}
+			else
+			{
+				Time.timeScale = 1;
+				AudioListener.pause = false;
+				if (mainMenu) mainMenu.SetActive(false);
+			}
 		}
 	}
 	
