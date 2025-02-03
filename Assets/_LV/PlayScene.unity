@@ -6450,6 +6450,18 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 17.83
       objectReference: {fileID: 0}
+    - target: {fileID: 4753790202746023237, guid: f571ebae0ce270c4681555936d52707e, type: 3}
+      propertyPath: m_Pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4753790202746023237, guid: f571ebae0ce270c4681555936d52707e, type: 3}
+      propertyPath: m_Resource
+      value: 
+      objectReference: {fileID: 8300000, guid: 3d47a3e45e08cae4f92582bf42f97514, type: 3}
+    - target: {fileID: 4753790202746023237, guid: f571ebae0ce270c4681555936d52707e, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 3d47a3e45e08cae4f92582bf42f97514, type: 3}
     - target: {fileID: 5243407402920689362, guid: f571ebae0ce270c4681555936d52707e, type: 3}
       propertyPath: m_fontSize
       value: 24
@@ -6500,11 +6512,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9067384683483887072, guid: f571ebae0ce270c4681555936d52707e, type: 3}
       propertyPath: fight
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9067384683483887072, guid: f571ebae0ce270c4681555936d52707e, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9067384683483887072, guid: f571ebae0ce270c4681555936d52707e, type: 3}
       propertyPath: wandering
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9067384683483887072, guid: f571ebae0ce270c4681555936d52707e, type: 3}
       propertyPath: FightingAudioClip
