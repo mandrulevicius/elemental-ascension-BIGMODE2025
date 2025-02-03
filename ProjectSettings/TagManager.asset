@@ -8,6 +8,7 @@ TagManager:
   - Poppy
   - Lily
   - Sunflower
+  - Boss
   layers:
   - Default
   - TransparentFX

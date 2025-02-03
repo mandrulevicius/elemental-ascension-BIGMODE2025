@@ -62,6 +62,8 @@ public class EntityStats : MonoBehaviour
         }
     }
 
+    public event Action OnBossDeath;
+
     public event Action<float> OnHealthChanged;
     [SerializeField] private float health = 100f;
     public float Health
@@ -76,6 +78,13 @@ public class EntityStats : MonoBehaviour
             {
                 dead = true;
                 OnDestruction?.Invoke();
+                if (gameObject.CompareTag("Boss"))
+                {
+                    
+                    OnBossDeath?.Invoke();
+                    gameObject.GetComponent<StarterAssetsInputs>().ToggleMainMenu();
+                    return;
+                }
                 if (gameObject.layer == LayerMask.NameToLayer("Player"))
                 {
                     gameObject.GetComponent<StarterAssetsInputs>().ToggleMainMenu();
