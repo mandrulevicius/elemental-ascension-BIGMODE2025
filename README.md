@@ -9,11 +9,11 @@ A few flowers catch your attention - glowing orbs of warm energy form in the emb
 
 At the corner of your view, you notice harsh red glow piercing through the serenity. Seven red eyes come into view, their glow glinting off the metal shape of a spider.
 
-The metal beast rushes towards you, it's metal legs moving with eerie precision. As it reaches you and winds up a leg for a piercing strike, orbs of energy strike it in a dull explosion, destroying it.
+The metal beast rushes towards you, it's metal legs moving with eerie precision. As it reaches you and winds up a leg for a piercing strike, orbs of energy hit it explode in a bright shower of sparks.
 
 The only thing that remains of the spider is a cube of energy suspended in air. Upon touch it bursts free, filling you with a rush of power.
 
-Turning your attention back to the flowers, you decide to pick them up to replant elsewhere.
+Turning your attention back to the flowers, you decide to pick them up to replant where you need them the most.
 
 And so onward you go, down the path of roots and fireflies, gathering more power to be strong enough to face the source of your attacker.
 
@@ -24,10 +24,16 @@ When more red lights appear in the darkness, you are ready - quickly planting th
 
 You notice that the more power you absorb, the faster you plant and move, allowing to deal with bigger threats.
 
-What also caught your attention was the way the plants obstructed mechanical beasts. You wonder if there is a way to make the flowers grow beyond their natural size.
+What also catches your attention is the way the plants obstruct mechanical beasts. You wonder if there is a way to make the flowers grow beyond their natural size.
 
 ### Facing The Horde
 _"Synergies between powers can create more than the sum of their parts"_
+
+Upon entering a huge clearing, you see more flowers to pick up.
+
+While moving towards them, you catch many red spots light up deeper in the jungle. Still deeper in, seven huge red orbs light up, their glow piercing the dense foliage.
+
+Looks like you found the source of your troubles. Prepare for the final battle!
 
 
 ---
