@@ -43,12 +43,9 @@ Entry for BIGMODE2025 Game Jam by Mindaugas and Laimonas
 [Download here](https://nonumbersgames.itch.io/atlanta-2173-flowers-vs-robot-spiders)
 
 ### Assets used
-Unity Third Person Starter Assets for player controller
-
-Quixel Megascans for environment textures, materials and objects
-
-DMYTRO Spider model
-
+- Unity Third Person Starter Assets for player controller
+- Quixel Megascans for environment textures, materials and objects
+- DMYTRO Spider model
 
 **Everything else done from scratch.**
 
