@@ -44,8 +44,11 @@ Entry for BIGMODE2025 Game Jam by Mindaugas and Laimonas
 
 ### Assets used
 Unity Third Person Starter Assets for player controller
+
 Quixel Megascans for environment textures, materials and objects
+
 DMYTRO Spider model
 
-Everything else done from scratch.
+
+**Everything else done from scratch.**
 
