@@ -158,6 +158,37 @@ public class EntityStats : MonoBehaviour
         }
     }
 
+    void OnCollisionEnter(Collision other)
+    {
+        Debug.Log(other.gameObject.name);
+        if (gameObject.layer == LayerMask.NameToLayer("Enemies"))
+        {
+            Debug.Log($"I am :{gameObject.name}, i hit:{other.gameObject.name});");
+            if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+            {
+                var playerStats = other.gameObject.GetComponent<EntityStats>();
+                if (playerStats)
+                {
+                    Health -= playerStats.damage;
+                    // health loss effect on health loss!
+                }
+            }
+        }
+
+        if (gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            if (other.gameObject.layer == LayerMask.NameToLayer("Enemies"))
+            {
+                var enemyStats = other.gameObject.GetComponentInParent<EntityStats>();
+                if (enemyStats)
+                {
+                    Health -= enemyStats.damage;
+                    // health loss effect on health loss!
+                }
+            }
+        }
+    }
+
 
     void Start()
     {

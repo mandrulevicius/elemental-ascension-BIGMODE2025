@@ -6851,6 +6851,14 @@ PrefabInstance:
       propertyPath: m_UIInputModule
       value: 
       objectReference: {fileID: 2422922837024549062}
+    - target: {fileID: 9115134481194847734, guid: 5cca0ae98f4554644a620d0705981f2a, type: 3}
+      propertyPath: canPush
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9115134481194847734, guid: 5cca0ae98f4554644a620d0705981f2a, type: 3}
+      propertyPath: pushLayers.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
