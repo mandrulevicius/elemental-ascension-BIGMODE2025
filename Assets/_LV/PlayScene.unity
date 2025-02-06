@@ -7176,11 +7176,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2323808999794101570, guid: 5cca0ae98f4554644a620d0705981f2a, type: 3}
       propertyPath: MoveSpeed
-      value: 20
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2323808999794101570, guid: 5cca0ae98f4554644a620d0705981f2a, type: 3}
       propertyPath: JumpHeight
-      value: 50.2
+      value: 1.2
       objectReference: {fileID: 0}
     - target: {fileID: 3657749348444997107, guid: 5cca0ae98f4554644a620d0705981f2a, type: 3}
       propertyPath: CinemachineCamera
