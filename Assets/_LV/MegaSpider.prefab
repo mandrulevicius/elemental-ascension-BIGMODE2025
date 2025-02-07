@@ -1323,7 +1323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9f1e4eebb781c4439a58a94a7a07cfd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  multiplicativeModifier: 100
+  multiplicativeModifier: 1000
   deathEffectParticles: {fileID: 3543108578963575561, guid: 83f82c8c9f73f51439f516f56875c218, type: 3}
   baseHealth: 10
   maxHealth: 10

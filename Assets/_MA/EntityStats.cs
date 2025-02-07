@@ -92,8 +92,13 @@ public class EntityStats : MonoBehaviour
                     gameObject.GetComponent<StarterAssetsInputs>().ToggleMainMenu();
                     return;
                 }
-                if(deathEffectParticles)
+
+                if (deathEffectParticles)
+                {
+                    deathEffectParticles.transform.localScale *= multiplicativeModifier;
                     Instantiate(deathEffectParticles, transform.position, Quaternion.identity);
+                }
+                    
                 if (dropPrefab)
                 {
                     var drop = Instantiate(dropPrefab, transform.position + Vector3.up, Quaternion.identity);
