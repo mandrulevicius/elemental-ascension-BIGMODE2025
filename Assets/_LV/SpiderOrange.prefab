@@ -2413,7 +2413,7 @@ MonoBehaviour:
   maxLegReach: 4
   preyLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 8448
   whatIsGroud:
     serializedVersion: 2
     m_Bits: 128

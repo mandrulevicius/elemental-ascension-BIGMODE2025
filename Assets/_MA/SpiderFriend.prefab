@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3952048240844893477}
   - component: {fileID: 2915161014390436348}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: Collider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -928,7 +928,7 @@ GameObject:
   - component: {fileID: 7693936669182691232}
   - component: {fileID: 4937323007322484895}
   - component: {fileID: 4964836059431015293}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: LegCollision
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2276,7 +2276,7 @@ GameObject:
   - component: {fileID: 5984760254617971518}
   - component: {fileID: 3649028940681148641}
   - component: {fileID: -8568585512919104522}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: SpiderFriend
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2434,7 +2434,7 @@ MonoBehaviour:
   windDownTime: 10
   cooldown: 10
   speed: 5
-  range: 50
+  range: 10
   legMovespeed: 120
   legLiftSpeed: 0.02
   isCooldowning: 0
@@ -3346,7 +3346,7 @@ GameObject:
   - component: {fileID: 5239253926089038733}
   - component: {fileID: 4475704046178807674}
   - component: {fileID: 1162560414190511055}
-  m_Layer: 9
+  m_Layer: 13
   m_Name: LegCollision
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1229,14 +1229,14 @@ MonoBehaviour:
   windUpTargets:
   - {fileID: 377630049069353828}
   - {fileID: 3437954230816310789}
-  maxLegReach: 16
+  maxLegReach: 100
   preyLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 8448
   whatIsGroud:
     serializedVersion: 2
     m_Bits: 128
-  distanceToSnap: 1
+  distanceToSnap: 10
   legTargetVariation: 0.1
   legStartOffsets:
   - 0

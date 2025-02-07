@@ -91,7 +91,7 @@ MonoBehaviour:
   attackSpeed: 120
   ticksUntilFullyGrown: 120
   fullyGrown: 0
-  particleCapacity: 2
+  particleCapacity: 3
   spwanPlace: {fileID: 5477154952182147363}
   prefab: {fileID: 1299261345072966613}
   spawned: 0
