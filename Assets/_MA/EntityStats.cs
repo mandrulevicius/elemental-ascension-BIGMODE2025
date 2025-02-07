@@ -165,10 +165,10 @@ public class EntityStats : MonoBehaviour
 
     void OnCollisionEnter(Collision other)
     {
-        Debug.Log(other.gameObject.name);
+        // Debug.Log(other.gameObject.name);
         if (gameObject.layer == LayerMask.NameToLayer("Enemies"))
         {
-            Debug.Log($"I am :{gameObject.name}, i hit:{other.gameObject.name});");
+            // Debug.Log($"I am :{gameObject.name}, i hit:{other.gameObject.name});");
             if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
                 var playerStats = other.gameObject.GetComponent<EntityStats>();
