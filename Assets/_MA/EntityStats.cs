@@ -169,7 +169,7 @@ public class EntityStats : MonoBehaviour
         if (gameObject.layer == LayerMask.NameToLayer("Enemies"))
         {
             // Debug.Log($"I am :{gameObject.name}, i hit:{other.gameObject.name});");
-            if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+            if (other.gameObject.layer == LayerMask.NameToLayer("Player") || other.gameObject.layer == LayerMask.NameToLayer("Friends"))
             {
                 var playerStats = other.gameObject.GetComponent<EntityStats>();
                 if (playerStats)
@@ -180,7 +180,7 @@ public class EntityStats : MonoBehaviour
             }
         }
 
-        if (gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (gameObject.layer == LayerMask.NameToLayer("Player") || gameObject.layer == LayerMask.NameToLayer("Friends"))
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Enemies"))
             {
