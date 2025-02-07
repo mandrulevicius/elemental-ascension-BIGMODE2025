@@ -150,7 +150,7 @@ public class ProceduralAnimation : MonoBehaviour
         _groundRay.direction = new Vector3(0, 0, 0);
         if (Physics.Raycast(_groundRay, out _hit, maxLegReach, whatIsGroud))
         {
-            transform.position = _hit.point;
+            transform.position += _hit.point * (speed * Time.fixedDeltaTime);
         }
 
         _frontRay.origin = body.transform.position;
@@ -216,10 +216,13 @@ public class ProceduralAnimation : MonoBehaviour
         transform.position += _movementDirection * (speed * Time.fixedDeltaTime);
 
         if (distanceToPlayer > maxLegReach)
-            transform.LookAt(new Vector3(_pray.transform.position.x, transform.position.y, _pray.transform.position.z));
-        if (distanceToPlayer <= maxLegReach && _snapPositions.Count > 0)
+            transform.LookAt((_movementDirection * (speed * Time.fixedDeltaTime)).normalized);
+        if (distanceToPlayer <= maxLegReach && Physics.Raycast(_frontRay, out _hit, maxLegReach, preyLayer))
         {
-            if (Physics.Raycast(_frontRay, out _hit, maxLegReach, preyLayer))
+            // transform.position += _hit.point * (speed * Time.fixedDeltaTime);
+            // transform.LookAt((_hit.point * (speed * Time.fixedDeltaTime)).normalized);
+            
+            if (_snapPositions.Count > 0)
             {
                 // transform.LookAt(new Vector3(_hit.point.x, _hit.point.y + 1, _hit.point.z)); // delta time here
                 if (Vector3.Distance(_snapPositions[0], _hit.point) < Vector3.Distance(_snapPositions[1], _hit.point))

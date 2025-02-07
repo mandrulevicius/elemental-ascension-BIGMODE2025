@@ -36,6 +36,8 @@ public class EntityStats : MonoBehaviour
     // entity's power
     
     private Vector3 _baseScale = new (1f, 1f, 1f);
+    private Vector3 _baseDeathParticleScale = new (1f, 1f, 1f);
+    
     
     [SerializeField] ParticleSystem deathEffectParticles;
     public event Action<float> OnMaxHealthChanged;
@@ -95,7 +97,7 @@ public class EntityStats : MonoBehaviour
 
                 if (deathEffectParticles)
                 {
-                    deathEffectParticles.transform.localScale *= multiplicativeModifier;
+                    deathEffectParticles.transform.localScale = _baseDeathParticleScale * multiplicativeModifier;
                     Instantiate(deathEffectParticles, transform.position, Quaternion.identity);
                 }
                     
@@ -152,9 +154,21 @@ public class EntityStats : MonoBehaviour
                 }
                 Health += 1;
             }
+            
+            if (other.gameObject.layer == LayerMask.NameToLayer("Particles"))
+            {
+                var particleStats = other.gameObject.GetComponent<EntityStats>();
+                if (particleStats)
+                {
+                    // energiesGatheredByType
+                    // temp effect
+                    Debug.Log("Particle Collision");
+                }
+                Health += 1; // depends on type of flower
+            }
         }
 
-        if (gameObject.layer == LayerMask.NameToLayer("Pickup"))
+        if (gameObject.layer == LayerMask.NameToLayer("Pickup") || gameObject.layer == LayerMask.NameToLayer("Particles"))
         {
             if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
             {
@@ -198,6 +212,7 @@ public class EntityStats : MonoBehaviour
     void Start()
     {
         _baseScale = transform.localScale;
+        if (deathEffectParticles) _baseDeathParticleScale = deathEffectParticles.transform.localScale;
         
         var lastMultiplicativeModifier = MultiplicativeModifier;
         MultiplicativeModifier = 1f;
