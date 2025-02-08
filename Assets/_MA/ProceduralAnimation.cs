@@ -71,6 +71,18 @@ public class ProceduralAnimation : MonoBehaviour
     [SerializeField] int minDuration = 1;
     [SerializeField] int maxDuration = 3;
 
+    [SerializeField] LineRenderer lineRenderer;
+    
+    void Awake() {
+        if (!lineRenderer) {
+            lineRenderer = GetComponentInChildren<LineRenderer>();
+            if (lineRenderer)
+            {
+                lineRenderer.positionCount = 2;
+            }
+        }
+    }
+    
     void Start()
     {
         stats = GetComponent<EntityStats>();
@@ -78,6 +90,7 @@ public class ProceduralAnimation : MonoBehaviour
             // .FirstOrDefault(obj => ((1 << obj.layer) & preyLayer) != 0);
 
         _groundRay = new Ray(body.transform.position, Vector3.down);
+
         _frontRay = new Ray(body.transform.position, Vector3.forward);
         InitializeLegs();
     }
@@ -130,6 +143,11 @@ public class ProceduralAnimation : MonoBehaviour
                         continue;
                     }
 
+                    // if (lineRenderer)
+                    // {
+                    //     lineRenderer.SetPosition(0, transform.position);
+                    //     lineRenderer.SetPosition(1, other[i].transform.position);
+                    // }
                     _pray = other[i].gameObject;
                     break;
                 }
@@ -150,6 +168,7 @@ public class ProceduralAnimation : MonoBehaviour
         _groundRay.direction = new Vector3(0, 0, 0);
         if (Physics.Raycast(_groundRay, out _hit, maxLegReach, whatIsGroud))
         {
+
             transform.position += _hit.point * (speed * Time.fixedDeltaTime);
         }
 
@@ -219,6 +238,11 @@ public class ProceduralAnimation : MonoBehaviour
             transform.LookAt((_movementDirection * (speed * Time.fixedDeltaTime)).normalized);
         if (distanceToPlayer <= maxLegReach && Physics.Raycast(_frontRay, out _hit, maxLegReach, preyLayer))
         {
+            if (lineRenderer)
+            {
+                lineRenderer.SetPosition(0, _frontRay.origin);
+                lineRenderer.SetPosition(1, _hit.point);
+            }
             // transform.position += _hit.point * (speed * Time.fixedDeltaTime);
             // transform.LookAt((_hit.point * (speed * Time.fixedDeltaTime)).normalized);
             
