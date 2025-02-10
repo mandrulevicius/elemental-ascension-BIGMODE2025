@@ -158,7 +158,7 @@ MonoBehaviour:
   maxLegReach: 2
   preyLayer:
     serializedVersion: 2
-    m_Bits: 1280
+    m_Bits: 1024
   whatIsGroud:
     serializedVersion: 2
     m_Bits: 0
@@ -189,6 +189,7 @@ MonoBehaviour:
   wanderSpeed: 0.1
   minDuration: 10
   maxDuration: 20
+  lineRenderer: {fileID: 0}
 --- !u!54 &4793961853278373480
 Rigidbody:
   m_ObjectHideFlags: 0

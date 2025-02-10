@@ -1269,6 +1269,7 @@ MonoBehaviour:
   wanderSpeed: 1
   minDuration: 150
   maxDuration: 500
+  lineRenderer: {fileID: 0}
 --- !u!54 &5984760254617971518
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2230,7 +2231,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3620898756613168952, guid: 9d92efb20d3289946bf00071ed77b0a2, type: 3}
       propertyPath: m_Type
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3620898756613168952, guid: 9d92efb20d3289946bf00071ed77b0a2, type: 3}
       propertyPath: m_Color.b

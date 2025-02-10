@@ -93,8 +93,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 20201, guid: 0000000000000000f000000000000000, type: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: e5fdf95985df84c4bb0d16c592d9dedf, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 1d32e25af30ac0e4385fb4ea6bc00e07, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -208,6 +208,10 @@ PrefabInstance:
     - target: {fileID: 5632521191423712832, guid: 8d6680ecd5994c8419f824bda85bf8ec, type: 3}
       propertyPath: m_Name
       value: SpiderOrange (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632521191423712832, guid: 8d6680ecd5994c8419f824bda85bf8ec, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1790,6 +1794,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EliteSpider (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5632521191423712832, guid: 72cff46758a7cd24193d2ef9cc6170b5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2219,6 +2227,10 @@ PrefabInstance:
     - target: {fileID: 1299261345072966613, guid: 3df0898943b441f4388fe6075ebda5be, type: 3}
       propertyPath: m_Name
       value: LillyForCasting
+      objectReference: {fileID: 0}
+    - target: {fileID: 1299261345072966613, guid: 3df0898943b441f4388fe6075ebda5be, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1941614614494175261, guid: 3df0898943b441f4388fe6075ebda5be, type: 3}
       propertyPath: spawned
@@ -3571,6 +3583,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpiderOrange (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 5632521191423712832, guid: 8d6680ecd5994c8419f824bda85bf8ec, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4587,6 +4603,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpiderOrange (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 5632521191423712832, guid: 8d6680ecd5994c8419f824bda85bf8ec, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5390,6 +5410,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpiderOrange (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5632521191423712832, guid: 8d6680ecd5994c8419f824bda85bf8ec, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5924,6 +5948,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: EliteSpider
       objectReference: {fileID: 0}
+    - target: {fileID: 5632521191423712832, guid: 72cff46758a7cd24193d2ef9cc6170b5, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6442,6 +6470,10 @@ PrefabInstance:
     - target: {fileID: 5632521191423712832, guid: 8d6680ecd5994c8419f824bda85bf8ec, type: 3}
       propertyPath: m_Name
       value: SpiderOrange
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632521191423712832, guid: 8d6680ecd5994c8419f824bda85bf8ec, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7611,6 +7643,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 436511119464908917, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 719644232481453341, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
       propertyPath: m_LocalPosition.x
       value: -51.831398
@@ -7655,9 +7691,89 @@ PrefabInstance:
       propertyPath: range
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1198490347866625185, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1585986610588566428, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2341008156264091562, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
+      propertyPath: m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2341008156264091562, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2745906489356655792, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3239947687180326997, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3333756562835306639, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469583570284199038, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4279302943046829367, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4638695615917986080, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4759358231493770922, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4918000694739446313, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5615456780113668226, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5632521191423712832, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
       propertyPath: m_Name
       value: BossSpider
+      objectReference: {fileID: 0}
+    - target: {fileID: 5632521191423712832, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5646408543877207685, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6961655978332634031, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7513116773462575566, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8152216329739601979, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8765435037334533887, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8906158287447833066, guid: 87b97369a5943f14fbaff8fe9a5c0f29, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8246,7 +8362,7 @@ Light:
   serializedVersion: 11
   m_Type: 1
   m_Color: {r: 0.21509439, g: 0, b: 0, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -8436,7 +8552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9dd26cc0bef5e04c841e179599af224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 1
 --- !u!1 &3421616923272655290
 GameObject:
   m_ObjectHideFlags: 0
@@ -8698,6 +8814,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerArmatureMA
       objectReference: {fileID: 0}
+    - target: {fileID: 1798108260626450835, guid: 5cca0ae98f4554644a620d0705981f2a, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2199613519387391426, guid: 5cca0ae98f4554644a620d0705981f2a, type: 3}
       propertyPath: spawned
       value: 1
@@ -8794,7 +8914,7 @@ Light:
   serializedVersion: 11
   m_Type: 1
   m_Color: {r: 0.8306337, g: 0.9622642, b: 0.90313536, a: 1}
-  m_Intensity: 2
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -8963,7 +9083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9dd26cc0bef5e04c841e179599af224, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 6
 --- !u!1 &8100648034423982417
 GameObject:
   m_ObjectHideFlags: 0
