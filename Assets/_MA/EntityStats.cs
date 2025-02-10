@@ -162,7 +162,7 @@ public class EntityStats : MonoBehaviour
                 {
                     // energiesGatheredByType
                     // temp effect
-                    Debug.Log("Particle Collision");
+                    // Debug.Log("Particle Collision");
                 }
                 Health += 1; // depends on type of flower
             }
