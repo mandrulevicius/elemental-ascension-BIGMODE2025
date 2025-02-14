@@ -97,14 +97,14 @@ public class EntityStats : MonoBehaviour
 
                 if (deathEffectParticles)
                 {
-                    deathEffectParticles.transform.localScale = _baseDeathParticleScale * multiplicativeModifier;
-                    Instantiate(deathEffectParticles, transform.position, Quaternion.identity);
+                    var deathEffectParticlesInstance = Instantiate(deathEffectParticles, transform.position, Quaternion.identity);
+                    deathEffectParticlesInstance.transform.localScale = _baseDeathParticleScale * multiplicativeModifier;
                 }
                     
                 if (dropPrefab)
                 {
                     var drop = Instantiate(dropPrefab, transform.position + Vector3.up, Quaternion.identity);
-                    drop.transform.localScale = drop.transform.localScale * (float)Math.Sqrt(multiplicativeModifier);
+                    drop.transform.localScale *= (float)Math.Sqrt(multiplicativeModifier);
                     drop.GetComponent<EntityStats>().MultiplicativeModifier = MultiplicativeModifier / 100f;
                 }
                 Destroy(gameObject, 0.1f);
